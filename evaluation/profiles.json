@@ -1,0 +1,17 @@
+[
+  {"id": "p_ana", "name": "Ana (fictional)", "sex": "female", "age": 28, "height_cm": 165, "weight_kg": 60,
+   "activity_factor": 1.55, "goal": "maintain", "kcal_target": 2000, "protein_target_g": 100,
+   "carbs_target_g": 250, "fat_target_g": 67, "preferences": [], "restrictions": []},
+  {"id": "p_mihai", "name": "Mihai (fictional)", "sex": "male", "age": 35, "height_cm": 180, "weight_kg": 85,
+   "activity_factor": 1.375, "goal": "lose", "kcal_target": 2200, "protein_target_g": 150,
+   "carbs_target_g": 220, "fat_target_g": 73, "preferences": [], "restrictions": []},
+  {"id": "p_ioana", "name": "Ioana (fictional)", "sex": "female", "age": 22, "height_cm": 170, "weight_kg": 58,
+   "activity_factor": 1.55, "goal": "maintain", "kcal_target": 1800, "protein_target_g": 90,
+   "carbs_target_g": 225, "fat_target_g": 60, "preferences": [], "restrictions": ["vegetarian"]},
+  {"id": "p_dan", "name": "Dan (fictional)", "sex": "male", "age": 40, "height_cm": 178, "weight_kg": 80,
+   "activity_factor": 1.55, "goal": "maintain", "kcal_target": 2400, "protein_target_g": 140,
+   "carbs_target_g": 280, "fat_target_g": 80, "preferences": ["dislikes mushrooms"], "restrictions": ["pescatarian"]},
+  {"id": "p_elena", "name": "Elena (fictional)", "sex": "female", "age": 31, "height_cm": 160, "weight_kg": 55,
+   "activity_factor": 1.375, "goal": "maintain", "kcal_target": 1900, "protein_target_g": 80,
+   "carbs_target_g": 240, "fat_target_g": 63, "preferences": [], "restrictions": ["vegan"]}
+]

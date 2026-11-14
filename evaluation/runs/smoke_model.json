@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-14T21:57:42+00:00",
+  "model": "qwen2.5:3b",
+  "parameter_size": "3.1B",
+  "quantization": "Q4_K_M",
+  "format": "gguf",
+  "question": "What are the calories and protein in 200 g of raw chicken breast?",
+  "raw_reply": "{\"tool\": \"search_foods\", \"arguments\": {\"food_name\": \"raw chicken breast\"}}",
+  "valid_json": true,
+  "tool": "search_foods",
+  "tool_is_allowed": true,
+  "latency_ms": 8248,
+  "load_ms": 3830,
+  "output_tokens": 21
+}
