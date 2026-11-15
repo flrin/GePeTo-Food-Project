@@ -1,11 +1,8 @@
--- GePeTo SQLite schema (week 7).
--- SQLite is the source of truth; Chroma/BM25 indexes come in week 9.
 
--- One row per food record. Nutrients are per 100 g; NULL means "unknown", never 0.
 CREATE TABLE IF NOT EXISTS foods (
     id             INTEGER PRIMARY KEY,
-    source         TEXT NOT NULL,              -- 'usda_sr_legacy' or 'user'
-    source_id      TEXT NOT NULL,              -- fdc_id for USDA rows
+    source         TEXT NOT NULL,
+    source_id      TEXT NOT NULL,
     description    TEXT NOT NULL,
     category       TEXT,
     prep_state     TEXT NOT NULL CHECK (prep_state IN ('raw', 'cooked', 'unspecified')),
@@ -16,21 +13,21 @@ CREATE TABLE IF NOT EXISTS foods (
     source_version TEXT NOT NULL,
     import_date    TEXT NOT NULL,
     content_hash   TEXT NOT NULL,
-    version        INTEGER NOT NULL DEFAULT 1, -- bumped when an import changes the record
+    version        INTEGER NOT NULL DEFAULT 1,
     user_entered   INTEGER NOT NULL DEFAULT 0,
     source_note    TEXT,
     UNIQUE (source, source_id)
 );
 
 CREATE TABLE IF NOT EXISTS recipes (
-    id              TEXT PRIMARY KEY,          -- e.g. 'r01'
+    id              TEXT PRIMARY KEY,
     title           TEXT NOT NULL,
     meal_type       TEXT NOT NULL,
     servings        INTEGER NOT NULL CHECK (servings > 0),
     weight_state    TEXT NOT NULL CHECK (weight_state IN ('raw', 'cooked')),
     cooked_weight_g REAL CHECK (cooked_weight_g IS NULL OR cooked_weight_g > 0),
-    tags            TEXT NOT NULL DEFAULT '[]', -- JSON list, e.g. ["vegetarian"]
-    steps           TEXT NOT NULL DEFAULT '[]', -- JSON list of strings
+    tags            TEXT NOT NULL DEFAULT '[]',
+    steps           TEXT NOT NULL DEFAULT '[]',
     content_hash    TEXT NOT NULL
 );
 
@@ -41,7 +38,6 @@ CREATE TABLE IF NOT EXISTS recipe_ingredients (
     PRIMARY KEY (recipe_id, food_id)
 );
 
--- Fictional profiles only (real personal data is never committed).
 CREATE TABLE IF NOT EXISTS profiles (
     id              INTEGER PRIMARY KEY,
     name            TEXT NOT NULL,
@@ -55,16 +51,15 @@ CREATE TABLE IF NOT EXISTS profiles (
     protein_target_g REAL,
     carbs_target_g  REAL,
     fat_target_g    REAL,
-    preferences     TEXT NOT NULL DEFAULT '[]', -- JSON, e.g. ["dislikes mushrooms"]
-    restrictions    TEXT NOT NULL DEFAULT '[]'  -- JSON, e.g. ["vegetarian"]
+    preferences     TEXT NOT NULL DEFAULT '[]',
+    restrictions    TEXT NOT NULL DEFAULT '[]'
 );
 
--- A meal log keeps a nutrient snapshot so a later import does not change old totals.
 CREATE TABLE IF NOT EXISTS meal_logs (
     id           INTEGER PRIMARY KEY,
     profile_id   INTEGER NOT NULL REFERENCES profiles(id),
     log_date     TEXT NOT NULL,
-    request_id   TEXT NOT NULL UNIQUE,         -- repeated request ids cannot duplicate a meal
+    request_id   TEXT NOT NULL UNIQUE,
     food_id      INTEGER REFERENCES foods(id),
     food_version INTEGER,
     recipe_id    TEXT REFERENCES recipes(id),

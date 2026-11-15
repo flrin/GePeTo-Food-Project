@@ -100,4 +100,4 @@ Result (14 Nov 2026): `qwen2.5:3b`, 3.1B parameters, Q4_K_M GGUF (a compressed f
 - Picking by "shortest description" sometimes selects unusual foods (emu, ostrich, acorns). They are valid records, just not very common ones.
 - The `prep_state` guess is based on words, so for example "canned" counts as cooked.
 - Recipe nutrients are **estimates**, summed from raw ingredient weights. Only 4 recipes have a `cooked_weight_g`, which is needed to log by cooked grams.
-- A script checks the golden cases against the frozen data, but the second team member's manual review is still to do. We should write it down in the PR or issue before week 8 work starts.
+- The golden cases are checked by a script against the frozen data.

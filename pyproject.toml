@@ -7,8 +7,6 @@ name = "gepeto"
 version = "0.1.0"
 description = "GePeTo - LLM-powered nutrition assistant (UBB LLM course project)"
 requires-python = ">=3.10"
-# Week 7 only needs the standard library (sqlite3, csv, urllib).
-# FastAPI, Streamlit, Chroma and the MCP SDK are added in weeks 8-10.
 dependencies = []
 
 [project.optional-dependencies]

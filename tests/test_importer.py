@@ -11,7 +11,7 @@ FIXTURES = Path(__file__).with_name("fixtures")
 def test_usda_reader_keeps_missing_values_as_none() -> None:
     records = {r["source_id"]: r for r in read_usda_csv(FIXTURES / "usda_mini")}
     assert records["900001"]["kcal"] == 165 and records["900001"]["protein_g"] == 31
-    assert records["900002"]["fat_g"] is None  # missing, not zero
+    assert records["900002"]["fat_g"] is None
     assert records["900001"]["category"] == "Poultry Products"
 
 
@@ -67,7 +67,7 @@ def test_user_foods_are_normalized_and_bad_rows_reported() -> None:
     assert any("missing description" in text for text in reasons.values())
 
     bar = conn.execute("SELECT * FROM foods WHERE source_id = 'granola-bar-label'").fetchone()
-    assert bar["kcal"] == 450  # 180 kcal per 40 g serving -> per 100 g
+    assert bar["kcal"] == 450
     assert bar["user_entered"] == 1 and bar["source"] == "user"
     drink = conn.execute("SELECT kcal FROM foods WHERE source_id = 'protein-drink-label-kj'").fetchone()
-    assert drink["kcal"] == pytest.approx(100)  # 418.4 kJ
+    assert drink["kcal"] == pytest.approx(100)

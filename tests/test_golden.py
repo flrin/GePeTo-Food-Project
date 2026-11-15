@@ -18,7 +18,7 @@ def test_checker_catches_a_wrong_number() -> None:
 def test_checker_catches_a_wrong_suggestion() -> None:
     broken = copy.deepcopy(load_cases())
     case = next(c for c in broken if c["id"] == "constrained_suggestion_06")
-    case["acceptable_recipe_ids"].append("r15")  # mushroom risotto for a mushroom hater
+    case["acceptable_recipe_ids"].append("r15")
     assert any("acceptable recipes" in error for error in check(broken))
 
 
