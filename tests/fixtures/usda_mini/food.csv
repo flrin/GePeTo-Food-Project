@@ -1,0 +1,4 @@
+"fdc_id","data_type","description","food_category_id","publication_date"
+"900001","sr_legacy_food","test_food_01, chicken, roasted","5","2019-04-01"
+"900002","sr_legacy_food","test_food_02, spinach, raw","11","2019-04-01"
+"900003","sr_legacy_food","test_food_03, carrots","11","2019-04-01"

@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gepeto"
+version = "0.1.0"
+description = "GePeTo - LLM-powered nutrition assistant (UBB LLM course project)"
+requires-python = ">=3.10"
+# Week 7 only needs the standard library (sqlite3, csv, urllib).
+# FastAPI, Streamlit, Chroma and the MCP SDK are added in weeks 8-10.
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1"]
+
+[tool.setuptools]
+packages = ["gepeto"]
+
+[tool.setuptools.package-data]
+gepeto = ["schema.sql"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers"
+testpaths = ["tests"]
+markers = ["model: needs a running Ollama server (set GEPETO_RUN_MODEL_TESTS=1)"]

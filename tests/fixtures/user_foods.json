@@ -1,0 +1,10 @@
+[
+  {"description": "Granola bar (label)", "basis": "serving", "serving_g": 40,
+   "kcal": 180, "protein_g": 4, "carbs_g": 26, "fat_g": 7, "source_note": "package label, photo 2026-11-12"},
+  {"description": "Protein drink (label, kJ)", "energy_unit": "kJ", "kcal": 418.4, "protein_g": 10,
+   "carbs_g": 3, "fat_g": 1, "source_note": "package label"},
+  {"description": "Mystery snack", "kcal": 300, "protein_g": 5},
+  {"description": "Bad serving", "basis": "serving", "kcal": 100, "protein_g": 2, "source_note": "label"},
+  {"description": "Negative fat", "kcal": 100, "protein_g": 2, "fat_g": -1, "source_note": "typo"},
+  {"description": "", "kcal": 50, "protein_g": 1, "source_note": "no name"}
+]

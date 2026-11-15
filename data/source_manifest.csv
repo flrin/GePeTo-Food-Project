@@ -1,0 +1,301 @@
+fdc_id,description,category,reason
+167533,"Bagels, wheat",Baked Products,category quota
+167550,"Snacks, popcorn, cakes",Snacks,category quota
+167722,Tofu yogurt,Legumes and Legume Products,category quota
+167724,"Millet, puffed",Breakfast Cereals,category quota
+167743,"Syrup, Cane",Sweets,category quota
+167745,"Turtle, green, raw",Finfish and Shellfish Products,category quota
+167747,"Lemon juice, raw",Fruits and Fruit Juices,recipe ingredient
+167749,"Lemon peel, raw",Fruits and Fruit Juices,category quota
+167754,"Pummelo, raw",Fruits and Fruit Juices,category quota
+167758,"Rhubarb, raw",Fruits and Fruit Juices,category quota
+167759,"Sapodilla, raw",Fruits and Fruit Juices,category quota
+167761,"Soursop, raw",Fruits and Fruit Juices,category quota
+167762,"Strawberries, raw",Fruits and Fruit Juices,recipe ingredient
+167763,"Tamarinds, raw",Fruits and Fruit Juices,category quota
+167765,"Watermelon, raw",Fruits and Fruit Juices,category quota
+167780,Prune puree,Fruits and Fruit Juices,category quota
+167781,Candied fruit,Fruits and Fruit Juices,category quota
+167782,"Abiyuch, raw",Fruits and Fruit Juices,category quota
+167783,"Rowal, raw",Fruits and Fruit Juices,category quota
+167806,Baobab powder,Fruits and Fruit Juices,category quota
+167811,"Pork, fresh, backfat, raw",Pork Products,category quota
+167812,"Pork, fresh, belly, raw",Pork Products,category quota
+167869,"Canadian bacon, unprepared",Pork Products,category quota
+167870,"Pork, cured, feet, pickled",Pork Products,category quota
+167902,"Pork, fresh, ground, raw",Pork Products,category quota
+167903,"Pork, fresh, ground, cooked",Pork Products,category quota
+167943,"Bread, potato",Baked Products,category quota
+167953,Fruit syrup,Sweets,category quota
+168106,Papad,Legumes and Legume Products,category quota
+168148,"Frog legs, raw",Finfish and Shellfish Products,category quota
+168151,"Jujube, raw",Fruits and Fruit Juices,category quota
+168154,"Kumquats, raw",Fruits and Fruit Juices,category quota
+168155,"Limes, raw",Fruits and Fruit Juices,category quota
+168156,"Lime juice, raw",Fruits and Fruit Juices,category quota
+168163,"Quinces, raw",Fruits and Fruit Juices,category quota
+168170,"Roselle, raw",Fruits and Fruit Juices,category quota
+168176,"Feijoa, raw",Fruits and Fruit Juices,category quota
+168191,"Dates, medjool",Fruits and Fruit Juices,category quota
+168249,"Pork, fresh, loin, tenderloin, separable lean only, raw",Pork Products,recipe ingredient
+168277,"Pork, cured, bacon, unprepared",Pork Products,category quota
+168287,"Pork, cured, salt pork, raw",Pork Products,category quota
+168389,"Asparagus, raw",Vegetables and Vegetable Products,category quota
+168409,"Cucumber, with peel, raw",Vegetables and Vegetable Products,recipe ingredient
+168412,"Endive, raw",Vegetables and Vegetable Products,category quota
+168418,"Pepeao, dried",Vegetables and Vegetable Products,category quota
+168421,"Kale, raw",Vegetables and Vegetable Products,recipe ingredient
+168424,"Kohlrabi, raw",Vegetables and Vegetable Products,category quota
+168446,Potato flour,Vegetables and Vegetable Products,category quota
+168448,"Pumpkin, raw",Vegetables and Vegetable Products,category quota
+168462,"Spinach, raw",Vegetables and Vegetable Products,recipe ingredient
+168482,"Sweet potato, raw, unprepared (Includes foods for USDA's Food Distribution Program)",Vegetables and Vegetable Products,recipe ingredient
+168556,Catsup,Vegetables and Vegetable Products,category quota
+168571,"Nopales, raw",Vegetables and Vegetable Products,category quota
+168605,"Beef, retail cuts, separable fat, raw",Beef Products,category quota
+168606,"Beef, retail cuts, separable fat, cooked",Beef Products,category quota
+168608,"Beef, grass-fed, ground, raw",Beef Products,category quota
+168652,"Beef, ground, 70% lean meat / 30% fat, raw",Beef Products,category quota
+168820,Molasses,Sweets,category quota
+168849,"Snacks, banana chips",Snacks,category quota
+168854,"Snacks, potato sticks",Snacks,category quota
+168857,"Snacks, corn cakes",Snacks,category quota
+168865,"Snacks, taro chips",Snacks,category quota
+168871,"Millet, cooked",Cereal Grains and Pasta,category quota
+168872,"Oat bran, raw",Cereal Grains and Pasta,category quota
+168874,"Quinoa, uncooked",Cereal Grains and Pasta,recipe ingredient
+168877,"Rice, white, long-grain, regular, raw, enriched",Cereal Grains and Pasta,recipe ingredient
+168884,Rye grain,Cereal Grains and Pasta,category quota
+168894,"Wheat flour, white, all-purpose, enriched, bleached",Cereal Grains and Pasta,recipe ingredient
+168917,"Quinoa, cooked",Cereal Grains and Pasta,category quota
+168918,"Teff, cooked",Cereal Grains and Pasta,category quota
+169064,"Pretzels, soft",Snacks,category quota
+169068,Vegetarian fillets,Legumes and Legume Products,category quota
+169086,"Litchis, raw",Fruits and Fruit Juices,category quota
+169087,"Litchis, dried",Fruits and Fruit Juices,category quota
+169089,"Longans, raw",Fruits and Fruit Juices,category quota
+169097,"Oranges, raw, all commercial varieties",Fruits and Fruit Juices,recipe ingredient
+169118,"Pears, raw",Fruits and Fruit Juices,category quota
+169145,"Beets, raw",Vegetables and Vegetable Products,category quota
+169157,"Pork, pickled pork hocks",Pork Products,category quota
+169228,"Eggplant, raw",Vegetables and Vegetable Products,recipe ingredient
+169230,"Garlic, raw",Vegetables and Vegetable Products,recipe ingredient
+169247,"Lettuce, cos or romaine, raw",Vegetables and Vegetable Products,recipe ingredient
+169251,"Mushrooms, white, raw",Vegetables and Vegetable Products,recipe ingredient
+169260,"Okra, raw",Vegetables and Vegetable Products,category quota
+169274,"Purslane, raw",Vegetables and Vegetable Products,category quota
+169276,"Radishes, raw",Vegetables and Vegetable Products,category quota
+169291,"Squash, summer, zucchini, includes skin, raw",Vegetables and Vegetable Products,recipe ingredient
+169308,"Taro, raw",Vegetables and Vegetable Products,category quota
+169387,"Arugula, raw",Vegetables and Vegetable Products,category quota
+169398,"Epazote, raw",Vegetables and Vegetable Products,category quota
+169414,"Seeds, flaxseed",Nut and Seed Products,category quota
+169640,Honey,Sweets,recipe ingredient
+169642,Jellies,Sweets,category quota
+169698,Cornstarch,Cereal Grains and Pasta,category quota
+169699,"Couscous, dry",Cereal Grains and Pasta,recipe ingredient
+169702,"Millet, raw",Cereal Grains and Pasta,category quota
+169703,"Rice, brown, long-grain, raw (Includes foods for USDA's Food Distribution Program)",Cereal Grains and Pasta,recipe ingredient
+169716,Sorghum grain,Cereal Grains and Pasta,category quota
+169718,Triticale,Cereal Grains and Pasta,category quota
+169721,"Wheat, durum",Cereal Grains and Pasta,category quota
+169736,"Pasta, dry, enriched",Cereal Grains and Pasta,recipe ingredient
+169746,"Spelt, cooked",Cereal Grains and Pasta,category quota
+169886,"Chicken, meatless",Legumes and Legume Products,category quota
+169907,"Longans, dried",Fruits and Fruit Juices,category quota
+169908,"Loquats, raw",Fruits and Fruit Juices,category quota
+169910,"Mangos, raw",Fruits and Fruit Juices,category quota
+169926,"Papayas, raw",Fruits and Fruit Juices,category quota
+169949,"Plums, raw",Fruits and Fruit Juices,category quota
+169975,"Cabbage, raw",Vegetables and Vegetable Products,recipe ingredient
+169981,"Cardoon, raw",Vegetables and Vegetable Products,category quota
+169985,"Cassava, raw",Vegetables and Vegetable Products,category quota
+169988,"Celery, raw",Vegetables and Vegetable Products,category quota
+169990,"Celtuce, raw",Vegetables and Vegetable Products,category quota
+169994,"Chives, raw",Vegetables and Vegetable Products,category quota
+169998,"Corn, sweet, yellow, raw",Vegetables and Vegetable Products,recipe ingredient
+170000,"Onions, raw",Vegetables and Vegetable Products,recipe ingredient
+170026,"Potatoes, flesh and skin, raw",Vegetables and Vegetable Products,recipe ingredient
+170054,"Tomato products, canned, sauce",Vegetables and Vegetable Products,recipe ingredient
+170071,"Yam, raw",Vegetables and Vegetable Products,category quota
+170076,"Dock, raw",Vegetables and Vegetable Products,category quota
+170078,"Eppaw, raw",Vegetables and Vegetable Products,category quota
+170108,"Peppers, sweet, red, raw",Vegetables and Vegetable Products,recipe ingredient
+170157,"Nuts, acorns, raw",Nut and Seed Products,category quota
+170160,"Nuts, almond paste",Nut and Seed Products,category quota
+170161,"Nuts, beechnuts, dried",Nut and Seed Products,category quota
+170173,"Nuts, coconut milk, canned (liquid expressed from grated meat and water)",Nut and Seed Products,recipe ingredient
+170182,"Nuts, pecans",Nut and Seed Products,category quota
+170187,"Nuts, walnuts, english",Nut and Seed Products,recipe ingredient
+170198,"Beef, cured, breakfast strips, cooked",Beef Products,category quota
+170199,"Beef, cured, corned beef, brisket, raw",Beef Products,category quota
+170200,"Beef, cured, corned beef, brisket, cooked",Beef Products,category quota
+170286,Buckwheat,Cereal Grains and Pasta,category quota
+170379,"Broccoli, raw",Vegetables and Vegetable Products,recipe ingredient
+170393,"Carrots, raw",Vegetables and Vegetable Products,recipe ingredient
+170400,"Celeriac, raw",Vegetables and Vegetable Products,category quota
+170406,"Collards, raw",Vegetables and Vegetable Products,category quota
+170417,"Parsnips, raw",Vegetables and Vegetable Products,category quota
+170419,"Peas, green, raw",Vegetables and Vegetable Products,recipe ingredient
+170431,Poi,Vegetables and Vegetable Products,category quota
+170457,"Tomatoes, red, ripe, raw, year round average",Vegetables and Vegetable Products,recipe ingredient
+170461,Tomato powder,Vegetables and Vegetable Products,category quota
+170465,"Turnips, raw",Vegetables and Vegetable Products,category quota
+170481,"Borage, raw",Vegetables and Vegetable Products,category quota
+170499,"Shallots, raw",Vegetables and Vegetable Products,category quota
+170554,"Seeds, chia seeds, dried",Nut and Seed Products,recipe ingredient
+170565,"Nuts, acorns, dried",Nut and Seed Products,category quota
+170567,"Nuts, almonds",Nut and Seed Products,recipe ingredient
+170590,"Nuts, pilinuts, dried",Nut and Seed Products,category quota
+170593,"Nuts, walnuts, glazed",Nut and Seed Products,category quota
+170688,"Bulgur, dry",Cereal Grains and Pasta,recipe ingredient
+170843,"Cheese, fontina",Dairy and Egg Products,category quota
+170844,"Cheese, monterey",Dairy and Egg Products,category quota
+170845,"Cheese, mozzarella, whole milk",Dairy and Egg Products,recipe ingredient
+170850,"Cheese, provolone",Dairy and Egg Products,category quota
+170852,"Cheese, tilsit",Dairy and Egg Products,category quota
+170885,"Whey, acid, fluid",Dairy and Egg Products,category quota
+170903,"Yogurt, Greek, plain, lowfat",Dairy and Egg Products,recipe ingredient
+171015,"Oil, palm",Fats and Oils,category quota
+171030,"Oil, walnut",Fats and Oils,category quota
+171031,"Oil, almond",Fats and Oils,category quota
+171077,"Chicken, broiler or fryers, breast, skinless, boneless, meat only, raw",Poultry Products,recipe ingredient
+171116,"Chicken, ground, raw",Poultry Products,category quota
+171119,"Chicken, feet, boiled",Poultry Products,category quota
+171240,"Cheese, gjetost",Dairy and Egg Products,category quota
+171241,"Cheese, gouda",Dairy and Egg Products,category quota
+171242,"Cheese, gruyere",Dairy and Egg Products,category quota
+171243,"Cheese, limburger",Dairy and Egg Products,category quota
+171245,"Cheese, muenster",Dairy and Egg Products,category quota
+171247,"Cheese, parmesan, grated",Dairy and Egg Products,recipe ingredient
+171248,"Cheese, ricotta, part skim milk",Dairy and Egg Products,recipe ingredient
+171249,"Cheese, romano",Dairy and Egg Products,category quota
+171250,"Cheese, roquefort",Dairy and Egg Products,category quota
+171251,"Cheese, swiss",Dairy and Egg Products,category quota
+171258,Eggnog,Dairy and Egg Products,category quota
+171265,"Milk, whole, 3.25% milkfat, with added vitamin D",Dairy and Egg Products,recipe ingredient
+171281,"Whey, acid, dried",Dairy and Egg Products,category quota
+171287,"Egg, whole, raw, fresh",Dairy and Egg Products,recipe ingredient
+171401,Lard,Fats and Oils,category quota
+171412,"Oil, coconut",Fats and Oils,category quota
+171413,"Oil, olive, salad or cooking",Fats and Oils,recipe ingredient
+171425,"Oil, teaseed",Fats and Oils,category quota
+171428,"Oil, babassu",Fats and Oils,category quota
+171429,"Oil, sheanut",Fats and Oils,category quota
+171500,"Turkey and gravy, frozen",Poultry Products,category quota
+171505,"Turkey, Ground, raw",Poultry Products,category quota
+171506,"Turkey, Ground, cooked",Poultry Products,category quota
+171646,"Cereals ready-to-eat, granola, homemade",Breakfast Cereals,category quota
+171688,"Apples, raw, with skin (Includes foods for USDA's Food Distribution Program)",Fruits and Fruit Juices,recipe ingredient
+171697,"Apricots, raw",Fruits and Fruit Juices,category quota
+171705,"Avocados, raw, all commercial varieties",Fruits and Fruit Juices,recipe ingredient
+171711,"Blueberries, raw",Fruits and Fruit Juices,recipe ingredient
+171790,"Beef, ground, 95% lean meat / 5% fat, raw",Beef Products,category quota
+171796,"Beef, ground, 85% lean meat / 15% fat, raw (Includes foods for USDA's Food Distribution Program)",Beef Products,recipe ingredient
+171949,"Fish, bluefish, raw",Finfish and Shellfish Products,category quota
+171950,"Fish, burbot, raw",Finfish and Shellfish Products,category quota
+171952,"Fish, carp, raw",Finfish and Shellfish Products,category quota
+171953,"Fish, cisco, raw",Finfish and Shellfish Products,category quota
+171954,"Fish, cisco, smoked",Finfish and Shellfish Products,category quota
+171955,"Fish, cod, Atlantic, raw",Finfish and Shellfish Products,recipe ingredient
+171958,"Fish, cusk, raw",Finfish and Shellfish Products,category quota
+171964,"Fish, haddock, raw",Finfish and Shellfish Products,category quota
+171986,"Fish, tuna, light, canned in water, without salt, drained solids",Finfish and Shellfish Products,recipe ingredient
+172023,Millet flour,Cereal Grains and Pasta,category quota
+172175,"Cheese, blue",Dairy and Egg Products,category quota
+172176,"Cheese, brick",Dairy and Egg Products,category quota
+172177,"Cheese, brie",Dairy and Egg Products,category quota
+172182,"Cheese, cottage, lowfat, 2% milkfat",Dairy and Egg Products,recipe ingredient
+172232,"Basil, fresh",Spices and Herbs,category quota
+172238,"Capers, canned",Spices and Herbs,category quota
+172336,"Oil, canola",Fats and Oils,category quota
+172337,"Oil, mustard",Fats and Oils,category quota
+172415,"Goose, liver, raw",Poultry Products,category quota
+172419,"Quail, meat only, raw",Poultry Products,category quota
+172420,"Lentils, raw",Legumes and Legume Products,recipe ingredient
+172439,"Bacon, meatless",Legumes and Legume Products,category quota
+172442,Miso,Legumes and Legume Products,category quota
+172443,Natto,Legumes and Legume Products,category quota
+172444,"Soy flour, low-fat",Legumes and Legume Products,category quota
+172446,"Soymilk, original and vanilla, unfortified",Legumes and Legume Products,recipe ingredient
+172451,"Tofu, fried",Legumes and Legume Products,category quota
+172452,Okara,Legumes and Legume Products,category quota
+172454,"Hummus, home prepared",Legumes and Legume Products,recipe ingredient
+172467,"Tempeh, cooked",Legumes and Legume Products,category quota
+172470,"Peanut butter, smooth style, without salt",Legumes and Legume Products,recipe ingredient
+172475,"Tofu, raw, firm, prepared with calcium sulfate",Legumes and Legume Products,recipe ingredient
+172673,"Bread, egg",Baked Products,category quota
+172684,"Bread, rye",Baked Products,category quota
+172686,"Bread, wheat",Baked Products,category quota
+172688,"Bread, whole-wheat, commercially prepared",Baked Products,recipe ingredient
+172791,Phyllo dough,Baked Products,category quota
+172832,"Emu, ground, raw",Poultry Products,category quota
+172835,"Emu, inside drum, raw",Poultry Products,category quota
+172837,"Emu, outside drum, raw",Poultry Products,category quota
+172838,"Emu, oyster, raw",Poultry Products,category quota
+172839,"Ostrich, inside leg, raw",Poultry Products,category quota
+172843,"Ostrich, oyster, cooked",Poultry Products,category quota
+172844,"Ostrich, round, raw",Poultry Products,category quota
+172845,"Ostrich, tenderloin, raw",Poultry Products,category quota
+172850,"Turkey, ground, 93% lean, 7% fat, raw",Poultry Products,recipe ingredient
+173021,"Figs, raw",Fruits and Fruit Juices,category quota
+173110,"Beef, ground, 93% lean meat / 7% fat, raw",Beef Products,category quota
+173111,"Beef, ground, 97% lean meat / 3% fat, raw",Beef Products,category quota
+173161,Rice crackers,Snacks,category quota
+173410,"Butter, salted",Dairy and Egg Products,category quota
+173413,"Cheese, caraway",Dairy and Egg Products,category quota
+173415,"Cheese, cheshire",Dairy and Egg Products,category quota
+173416,"Cheese, colby",Dairy and Egg Products,category quota
+173418,"Cheese, cream",Dairy and Egg Products,category quota
+173419,"Cheese, edam",Dairy and Egg Products,category quota
+173420,"Cheese, feta",Dairy and Egg Products,recipe ingredient
+173428,"Egg, yolk, dried",Dairy and Egg Products,category quota
+173430,"Butter, without salt",Dairy and Egg Products,recipe ingredient
+173461,Dulce de Leche,Dairy and Egg Products,category quota
+173468,"Salt, table",Spices and Herbs,category quota
+173469,"Vinegar, cider",Spices and Herbs,category quota
+173470,"Thyme, fresh",Spices and Herbs,category quota
+173564,"Fat, chicken",Fats and Oils,category quota
+173571,"Fat, turkey",Fats and Oils,category quota
+173572,"Fat, goose",Fats and Oils,category quota
+173576,"Oil, oat",Fats and Oils,category quota
+173670,"Fish, ling, raw",Finfish and Shellfish Products,category quota
+173671,"Fish, lingcod, raw",Finfish and Shellfish Products,category quota
+173700,"Fish, spot, raw",Finfish and Shellfish Products,category quota
+173702,"Fish, surimi",Finfish and Shellfish Products,category quota
+173735,"Beans, black, mature seeds, cooked, boiled, without salt",Legumes and Legume Products,recipe ingredient
+173755,Carob flour,Legumes and Legume Products,category quota
+173757,"Chickpeas (garbanzo beans, bengal gram), mature seeds, cooked, boiled, without salt",Legumes and Legume Products,recipe ingredient
+173904,"Cereals, oats, regular and quick, not fortified, dry",Breakfast Cereals,recipe ingredient
+173916,"Cereals, farina, unenriched, dry",Breakfast Cereals,category quota
+173944,"Bananas, raw",Fruits and Fruit Juices,recipe ingredient
+173953,"Cherimoya, raw",Fruits and Fruit Juices,category quota
+174030,"Beef, ground, 90% lean meat / 10% fat, raw",Beef Products,category quota
+174036,"Beef, ground, 80% lean meat / 20% fat, raw",Beef Products,category quota
+174037,"Beef, ground, 75% lean meat / 25% fat, raw",Beef Products,category quota
+174081,"Tortillas, ready-to-bake or -fry, whole wheat",Baked Products,recipe ingredient
+174268,Meat extender,Legumes and Legume Products,category quota
+174269,"Sausage, meatless",Legumes and Legume Products,category quota
+174272,Tempeh,Legumes and Legume Products,category quota
+174277,Soy sauce made from soy and wheat (shoyu),Legumes and Legume Products,recipe ingredient
+174285,"Beans, kidney, red, mature seeds, canned, drained solids",Legumes and Legume Products,recipe ingredient
+174289,"Hummus, commercial",Legumes and Legume Products,category quota
+174473,"Pheasant, raw, meat only",Poultry Products,category quota
+174476,"Emu, fan fillet, raw",Poultry Products,category quota
+174478,"Emu, flat fillet, raw",Poultry Products,category quota
+174479,"Emu, full rump, raw",Poultry Products,category quota
+174481,"Ostrich, ground, raw",Poultry Products,category quota
+174483,"Ostrich, fan, raw",Poultry Products,category quota
+174487,"Ostrich, oyster, raw",Poultry Products,category quota
+174489,"Ostrich, top loin, raw",Poultry Products,category quota
+174628,"Cereals ready-to-eat, Post, Waffle Crisp",Breakfast Cereals,category quota
+174650,Milk and cereal bar,Snacks,category quota
+174687,"Jackfruit, raw",Fruits and Fruit Juices,category quota
+174726,"Beef, New Zealand, imported, inside, raw",Beef Products,category quota
+174901,"Bagels, egg",Baked Products,category quota
+175020,"Pie, peach",Baked Products,category quota
+175141,"Fish, scup, raw",Finfish and Shellfish Products,category quota
+175160,"Fish, tuna salad",Finfish and Shellfish Products,category quota
+175167,"Fish, salmon, Atlantic, farmed, raw",Finfish and Shellfish Products,recipe ingredient
+175176,"Fish, tilapia, raw",Finfish and Shellfish Products,category quota
+175179,"Crustaceans, shrimp, raw",Finfish and Shellfish Products,recipe ingredient

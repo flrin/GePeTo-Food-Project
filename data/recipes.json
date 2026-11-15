@@ -1,0 +1,1406 @@
+[
+  {
+    "id": "r01",
+    "title": "Overnight oats with blueberries",
+    "meal_type": "breakfast",
+    "servings": 2,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "173904",
+        "name": "oats",
+        "grams": 80
+      },
+      {
+        "fdc_id": "171265",
+        "name": "milk",
+        "grams": 200
+      },
+      {
+        "fdc_id": "170903",
+        "name": "yogurt",
+        "grams": 100
+      },
+      {
+        "fdc_id": "171711",
+        "name": "blueberry",
+        "grams": 80
+      },
+      {
+        "fdc_id": "169640",
+        "name": "honey",
+        "grams": 10
+      },
+      {
+        "fdc_id": "170554",
+        "name": "chia",
+        "grams": 10
+      }
+    ],
+    "steps": [
+      "Mix oats, milk, yogurt and chia seeds in a jar.",
+      "Refrigerate overnight.",
+      "Top with blueberries and honey before serving."
+    ]
+  },
+  {
+    "id": "r02",
+    "title": "Spinach and feta omelette",
+    "meal_type": "breakfast",
+    "servings": 1,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "171287",
+        "name": "egg",
+        "grams": 150
+      },
+      {
+        "fdc_id": "168462",
+        "name": "spinach",
+        "grams": 60
+      },
+      {
+        "fdc_id": "173420",
+        "name": "feta",
+        "grams": 30
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 5
+      }
+    ],
+    "steps": [
+      "Whisk the eggs.",
+      "Wilt the spinach in oil.",
+      "Add eggs, crumble feta on top and fold when set."
+    ]
+  },
+  {
+    "id": "r03",
+    "title": "Mushroom omelette",
+    "meal_type": "breakfast",
+    "servings": 1,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "171287",
+        "name": "egg",
+        "grams": 150
+      },
+      {
+        "fdc_id": "169251",
+        "name": "mushroom",
+        "grams": 80
+      },
+      {
+        "fdc_id": "170000",
+        "name": "onion",
+        "grams": 30
+      },
+      {
+        "fdc_id": "173430",
+        "name": "butter",
+        "grams": 5
+      }
+    ],
+    "steps": [
+      "Slice mushrooms and onion and fry them in butter.",
+      "Pour in the whisked eggs.",
+      "Fold and serve when set."
+    ]
+  },
+  {
+    "id": "r04",
+    "title": "Banana peanut butter toast",
+    "meal_type": "breakfast",
+    "servings": 1,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian",
+      "vegan"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "172688",
+        "name": "bread",
+        "grams": 60
+      },
+      {
+        "fdc_id": "172470",
+        "name": "peanut butter",
+        "grams": 30
+      },
+      {
+        "fdc_id": "173944",
+        "name": "banana",
+        "grams": 100
+      }
+    ],
+    "steps": [
+      "Toast the bread.",
+      "Spread peanut butter.",
+      "Top with banana slices."
+    ]
+  },
+  {
+    "id": "r05",
+    "title": "Greek yogurt bowl with strawberries",
+    "meal_type": "breakfast",
+    "servings": 1,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "170903",
+        "name": "yogurt",
+        "grams": 200
+      },
+      {
+        "fdc_id": "167762",
+        "name": "strawberry",
+        "grams": 100
+      },
+      {
+        "fdc_id": "170187",
+        "name": "walnuts",
+        "grams": 20
+      },
+      {
+        "fdc_id": "169640",
+        "name": "honey",
+        "grams": 10
+      }
+    ],
+    "steps": [
+      "Spoon yogurt into a bowl.",
+      "Add sliced strawberries and chopped walnuts.",
+      "Drizzle with honey."
+    ]
+  },
+  {
+    "id": "r06",
+    "title": "Tofu scramble with peppers",
+    "meal_type": "breakfast",
+    "servings": 2,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian",
+      "vegan"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "172475",
+        "name": "tofu",
+        "grams": 200
+      },
+      {
+        "fdc_id": "168462",
+        "name": "spinach",
+        "grams": 50
+      },
+      {
+        "fdc_id": "170108",
+        "name": "pepper",
+        "grams": 60
+      },
+      {
+        "fdc_id": "170000",
+        "name": "onion",
+        "grams": 40
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 10
+      }
+    ],
+    "steps": [
+      "Fry onion and pepper in oil.",
+      "Crumble in the tofu and cook for 5 minutes.",
+      "Stir in spinach until wilted."
+    ]
+  },
+  {
+    "id": "r07",
+    "title": "Chicken, rice and broccoli",
+    "meal_type": "lunch",
+    "servings": 2,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [],
+    "ingredients": [
+      {
+        "fdc_id": "171077",
+        "name": "chicken",
+        "grams": 300
+      },
+      {
+        "fdc_id": "168877",
+        "name": "rice",
+        "grams": 150
+      },
+      {
+        "fdc_id": "170379",
+        "name": "broccoli",
+        "grams": 200
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 10
+      },
+      {
+        "fdc_id": "174277",
+        "name": "soy sauce",
+        "grams": 15
+      }
+    ],
+    "steps": [
+      "Cook the rice.",
+      "Cut chicken into strips and fry in oil until cooked through.",
+      "Steam the broccoli.",
+      "Serve together with soy sauce."
+    ]
+  },
+  {
+    "id": "r08",
+    "title": "Lentil soup",
+    "meal_type": "lunch",
+    "servings": 4,
+    "weight_state": "raw",
+    "cooked_weight_g": 1600,
+    "tags": [
+      "vegetarian",
+      "vegan"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "172420",
+        "name": "lentils",
+        "grams": 200
+      },
+      {
+        "fdc_id": "170393",
+        "name": "carrot",
+        "grams": 100
+      },
+      {
+        "fdc_id": "170000",
+        "name": "onion",
+        "grams": 100
+      },
+      {
+        "fdc_id": "170457",
+        "name": "tomato",
+        "grams": 200
+      },
+      {
+        "fdc_id": "169230",
+        "name": "garlic",
+        "grams": 10
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 15
+      }
+    ],
+    "steps": [
+      "Fry onion, carrot and garlic in oil.",
+      "Add lentils, chopped tomatoes and 1 litre of water.",
+      "Simmer for 30 minutes."
+    ]
+  },
+  {
+    "id": "r09",
+    "title": "Chickpea feta salad",
+    "meal_type": "lunch",
+    "servings": 2,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "173757",
+        "name": "chickpeas",
+        "grams": 240
+      },
+      {
+        "fdc_id": "168409",
+        "name": "cucumber",
+        "grams": 150
+      },
+      {
+        "fdc_id": "170457",
+        "name": "tomato",
+        "grams": 150
+      },
+      {
+        "fdc_id": "173420",
+        "name": "feta",
+        "grams": 60
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 15
+      },
+      {
+        "fdc_id": "167747",
+        "name": "lemon",
+        "grams": 15
+      }
+    ],
+    "steps": [
+      "Chop cucumber and tomato.",
+      "Mix with chickpeas and crumbled feta.",
+      "Dress with oil and lemon juice."
+    ]
+  },
+  {
+    "id": "r10",
+    "title": "Tuna salad",
+    "meal_type": "lunch",
+    "servings": 2,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "pescatarian"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "171986",
+        "name": "tuna",
+        "grams": 150
+      },
+      {
+        "fdc_id": "169247",
+        "name": "lettuce",
+        "grams": 100
+      },
+      {
+        "fdc_id": "170457",
+        "name": "tomato",
+        "grams": 100
+      },
+      {
+        "fdc_id": "168409",
+        "name": "cucumber",
+        "grams": 100
+      },
+      {
+        "fdc_id": "171287",
+        "name": "egg",
+        "grams": 50
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 10
+      }
+    ],
+    "steps": [
+      "Hard-boil the egg and slice it.",
+      "Chop the vegetables.",
+      "Combine with drained tuna and dress with oil."
+    ]
+  },
+  {
+    "id": "r11",
+    "title": "Black bean tacos",
+    "meal_type": "dinner",
+    "servings": 3,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian",
+      "vegan"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "173735",
+        "name": "black beans",
+        "grams": 250
+      },
+      {
+        "fdc_id": "174081",
+        "name": "tortilla",
+        "grams": 120
+      },
+      {
+        "fdc_id": "171705",
+        "name": "avocado",
+        "grams": 100
+      },
+      {
+        "fdc_id": "170457",
+        "name": "tomato",
+        "grams": 100
+      },
+      {
+        "fdc_id": "170000",
+        "name": "onion",
+        "grams": 50
+      },
+      {
+        "fdc_id": "169998",
+        "name": "corn",
+        "grams": 100
+      }
+    ],
+    "steps": [
+      "Warm the beans with the corn.",
+      "Dice tomato, onion and avocado.",
+      "Fill the warmed tortillas."
+    ]
+  },
+  {
+    "id": "r12",
+    "title": "Salmon with sweet potato and broccoli",
+    "meal_type": "dinner",
+    "servings": 2,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "pescatarian"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "175167",
+        "name": "salmon",
+        "grams": 300
+      },
+      {
+        "fdc_id": "168482",
+        "name": "sweet potato",
+        "grams": 400
+      },
+      {
+        "fdc_id": "170379",
+        "name": "broccoli",
+        "grams": 200
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 10
+      },
+      {
+        "fdc_id": "167747",
+        "name": "lemon",
+        "grams": 10
+      }
+    ],
+    "steps": [
+      "Roast sweet potato wedges with oil for 30 minutes.",
+      "Bake the salmon for 15 minutes.",
+      "Steam broccoli and serve with lemon."
+    ]
+  },
+  {
+    "id": "r13",
+    "title": "Beef and mushroom stir-fry",
+    "meal_type": "dinner",
+    "servings": 3,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [],
+    "ingredients": [
+      {
+        "fdc_id": "171796",
+        "name": "beef",
+        "grams": 300
+      },
+      {
+        "fdc_id": "169251",
+        "name": "mushroom",
+        "grams": 200
+      },
+      {
+        "fdc_id": "170108",
+        "name": "pepper",
+        "grams": 150
+      },
+      {
+        "fdc_id": "170000",
+        "name": "onion",
+        "grams": 100
+      },
+      {
+        "fdc_id": "168877",
+        "name": "rice",
+        "grams": 150
+      },
+      {
+        "fdc_id": "174277",
+        "name": "soy sauce",
+        "grams": 20
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 10
+      }
+    ],
+    "steps": [
+      "Cook the rice.",
+      "Brown the beef in oil.",
+      "Add mushrooms, pepper and onion and stir-fry.",
+      "Season with soy sauce and serve over rice."
+    ]
+  },
+  {
+    "id": "r14",
+    "title": "Spaghetti bolognese",
+    "meal_type": "dinner",
+    "servings": 4,
+    "weight_state": "raw",
+    "cooked_weight_g": 1300,
+    "tags": [],
+    "ingredients": [
+      {
+        "fdc_id": "171796",
+        "name": "beef",
+        "grams": 400
+      },
+      {
+        "fdc_id": "169736",
+        "name": "pasta",
+        "grams": 320
+      },
+      {
+        "fdc_id": "170054",
+        "name": "tomato sauce",
+        "grams": 400
+      },
+      {
+        "fdc_id": "170000",
+        "name": "onion",
+        "grams": 100
+      },
+      {
+        "fdc_id": "169230",
+        "name": "garlic",
+        "grams": 10
+      },
+      {
+        "fdc_id": "170393",
+        "name": "carrot",
+        "grams": 80
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 10
+      },
+      {
+        "fdc_id": "171247",
+        "name": "parmesan",
+        "grams": 20
+      }
+    ],
+    "steps": [
+      "Fry onion, carrot and garlic in oil.",
+      "Brown the beef, add tomato sauce and simmer 20 minutes.",
+      "Boil the pasta.",
+      "Serve with parmesan."
+    ]
+  },
+  {
+    "id": "r15",
+    "title": "Mushroom risotto",
+    "meal_type": "dinner",
+    "servings": 4,
+    "weight_state": "raw",
+    "cooked_weight_g": 1200,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "168877",
+        "name": "rice",
+        "grams": 300
+      },
+      {
+        "fdc_id": "169251",
+        "name": "mushroom",
+        "grams": 300
+      },
+      {
+        "fdc_id": "170000",
+        "name": "onion",
+        "grams": 100
+      },
+      {
+        "fdc_id": "173430",
+        "name": "butter",
+        "grams": 30
+      },
+      {
+        "fdc_id": "171247",
+        "name": "parmesan",
+        "grams": 40
+      },
+      {
+        "fdc_id": "169230",
+        "name": "garlic",
+        "grams": 10
+      }
+    ],
+    "steps": [
+      "Fry onion, garlic and mushrooms in butter.",
+      "Add rice and gradually add hot water while stirring for 20 minutes.",
+      "Stir in parmesan."
+    ]
+  },
+  {
+    "id": "r16",
+    "title": "Vegetable quinoa bowl",
+    "meal_type": "lunch",
+    "servings": 2,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian",
+      "vegan"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "168874",
+        "name": "quinoa",
+        "grams": 150
+      },
+      {
+        "fdc_id": "173757",
+        "name": "chickpeas",
+        "grams": 150
+      },
+      {
+        "fdc_id": "170108",
+        "name": "pepper",
+        "grams": 100
+      },
+      {
+        "fdc_id": "169291",
+        "name": "zucchini",
+        "grams": 150
+      },
+      {
+        "fdc_id": "168421",
+        "name": "kale",
+        "grams": 60
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 15
+      },
+      {
+        "fdc_id": "167747",
+        "name": "lemon",
+        "grams": 15
+      }
+    ],
+    "steps": [
+      "Cook the quinoa.",
+      "Roast pepper and zucchini with oil.",
+      "Combine with chickpeas and kale, dress with lemon."
+    ]
+  },
+  {
+    "id": "r17",
+    "title": "Turkey chili",
+    "meal_type": "dinner",
+    "servings": 4,
+    "weight_state": "raw",
+    "cooked_weight_g": 1500,
+    "tags": [],
+    "ingredients": [
+      {
+        "fdc_id": "172850",
+        "name": "turkey",
+        "grams": 400
+      },
+      {
+        "fdc_id": "174285",
+        "name": "kidney",
+        "grams": 300
+      },
+      {
+        "fdc_id": "170054",
+        "name": "tomato sauce",
+        "grams": 400
+      },
+      {
+        "fdc_id": "170000",
+        "name": "onion",
+        "grams": 150
+      },
+      {
+        "fdc_id": "170108",
+        "name": "pepper",
+        "grams": 150
+      },
+      {
+        "fdc_id": "169230",
+        "name": "garlic",
+        "grams": 10
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 10
+      }
+    ],
+    "steps": [
+      "Brown turkey with onion and garlic in oil.",
+      "Add pepper, beans and tomato sauce.",
+      "Simmer for 30 minutes."
+    ]
+  },
+  {
+    "id": "r18",
+    "title": "Garlic shrimp pasta",
+    "meal_type": "dinner",
+    "servings": 2,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "pescatarian"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "175179",
+        "name": "shrimp",
+        "grams": 300
+      },
+      {
+        "fdc_id": "169736",
+        "name": "pasta",
+        "grams": 200
+      },
+      {
+        "fdc_id": "169230",
+        "name": "garlic",
+        "grams": 15
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 20
+      },
+      {
+        "fdc_id": "168462",
+        "name": "spinach",
+        "grams": 100
+      },
+      {
+        "fdc_id": "167747",
+        "name": "lemon",
+        "grams": 20
+      }
+    ],
+    "steps": [
+      "Boil the pasta.",
+      "Fry garlic and shrimp in oil for 3 minutes.",
+      "Toss with pasta, spinach and lemon juice."
+    ]
+  },
+  {
+    "id": "r19",
+    "title": "Baked cod with potatoes and peas",
+    "meal_type": "dinner",
+    "servings": 2,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "pescatarian"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "171955",
+        "name": "cod",
+        "grams": 400
+      },
+      {
+        "fdc_id": "170026",
+        "name": "potato",
+        "grams": 500
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 20
+      },
+      {
+        "fdc_id": "167747",
+        "name": "lemon",
+        "grams": 20
+      },
+      {
+        "fdc_id": "170419",
+        "name": "peas",
+        "grams": 150
+      }
+    ],
+    "steps": [
+      "Roast sliced potatoes with oil for 25 minutes.",
+      "Add cod on top and bake 12 more minutes.",
+      "Boil peas and serve with lemon."
+    ]
+  },
+  {
+    "id": "r20",
+    "title": "Pork tenderloin with cabbage and apple",
+    "meal_type": "dinner",
+    "servings": 3,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [],
+    "ingredients": [
+      {
+        "fdc_id": "168249",
+        "name": "pork",
+        "grams": 400
+      },
+      {
+        "fdc_id": "169975",
+        "name": "cabbage",
+        "grams": 400
+      },
+      {
+        "fdc_id": "170393",
+        "name": "carrot",
+        "grams": 150
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 15
+      },
+      {
+        "fdc_id": "171688",
+        "name": "apple",
+        "grams": 150
+      }
+    ],
+    "steps": [
+      "Sear pork in oil and roast for 20 minutes.",
+      "Braise shredded cabbage, carrot and apple.",
+      "Slice pork and serve on the cabbage."
+    ]
+  },
+  {
+    "id": "r21",
+    "title": "Hummus veggie wrap",
+    "meal_type": "lunch",
+    "servings": 2,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian",
+      "vegan"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "174081",
+        "name": "tortilla",
+        "grams": 120
+      },
+      {
+        "fdc_id": "172454",
+        "name": "hummus",
+        "grams": 120
+      },
+      {
+        "fdc_id": "170393",
+        "name": "carrot",
+        "grams": 80
+      },
+      {
+        "fdc_id": "168409",
+        "name": "cucumber",
+        "grams": 100
+      },
+      {
+        "fdc_id": "169247",
+        "name": "lettuce",
+        "grams": 60
+      },
+      {
+        "fdc_id": "170108",
+        "name": "pepper",
+        "grams": 80
+      }
+    ],
+    "steps": [
+      "Spread hummus on the tortillas.",
+      "Add sliced vegetables.",
+      "Roll tightly and cut in half."
+    ]
+  },
+  {
+    "id": "r22",
+    "title": "Caprese pasta salad",
+    "meal_type": "lunch",
+    "servings": 3,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "169736",
+        "name": "pasta",
+        "grams": 200
+      },
+      {
+        "fdc_id": "170457",
+        "name": "tomato",
+        "grams": 300
+      },
+      {
+        "fdc_id": "170845",
+        "name": "mozzarella",
+        "grams": 125
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 15
+      }
+    ],
+    "steps": [
+      "Boil and cool the pasta.",
+      "Dice tomatoes and mozzarella.",
+      "Mix everything with olive oil."
+    ]
+  },
+  {
+    "id": "r23",
+    "title": "Eggplant parmesan",
+    "meal_type": "dinner",
+    "servings": 4,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "169228",
+        "name": "eggplant",
+        "grams": 500
+      },
+      {
+        "fdc_id": "170054",
+        "name": "tomato sauce",
+        "grams": 300
+      },
+      {
+        "fdc_id": "170845",
+        "name": "mozzarella",
+        "grams": 150
+      },
+      {
+        "fdc_id": "171247",
+        "name": "parmesan",
+        "grams": 40
+      },
+      {
+        "fdc_id": "168894",
+        "name": "flour",
+        "grams": 30
+      },
+      {
+        "fdc_id": "171287",
+        "name": "egg",
+        "grams": 50
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 30
+      }
+    ],
+    "steps": [
+      "Slice eggplant, dip in flour and egg, fry in oil.",
+      "Layer with tomato sauce and cheeses.",
+      "Bake for 30 minutes."
+    ]
+  },
+  {
+    "id": "r24",
+    "title": "Tofu vegetable stir-fry",
+    "meal_type": "dinner",
+    "servings": 3,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian",
+      "vegan"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "172475",
+        "name": "tofu",
+        "grams": 300
+      },
+      {
+        "fdc_id": "170379",
+        "name": "broccoli",
+        "grams": 200
+      },
+      {
+        "fdc_id": "170393",
+        "name": "carrot",
+        "grams": 100
+      },
+      {
+        "fdc_id": "170108",
+        "name": "pepper",
+        "grams": 150
+      },
+      {
+        "fdc_id": "169703",
+        "name": "brown rice",
+        "grams": 150
+      },
+      {
+        "fdc_id": "174277",
+        "name": "soy sauce",
+        "grams": 20
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 15
+      },
+      {
+        "fdc_id": "169230",
+        "name": "garlic",
+        "grams": 10
+      }
+    ],
+    "steps": [
+      "Cook the brown rice.",
+      "Fry cubed tofu in oil until golden.",
+      "Stir-fry the vegetables with garlic and soy sauce, add tofu."
+    ]
+  },
+  {
+    "id": "r25",
+    "title": "Coconut chickpea curry",
+    "meal_type": "dinner",
+    "servings": 4,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian",
+      "vegan"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "173757",
+        "name": "chickpeas",
+        "grams": 400
+      },
+      {
+        "fdc_id": "170173",
+        "name": "coconut milk",
+        "grams": 200
+      },
+      {
+        "fdc_id": "170457",
+        "name": "tomato",
+        "grams": 300
+      },
+      {
+        "fdc_id": "170000",
+        "name": "onion",
+        "grams": 150
+      },
+      {
+        "fdc_id": "168462",
+        "name": "spinach",
+        "grams": 100
+      },
+      {
+        "fdc_id": "169230",
+        "name": "garlic",
+        "grams": 10
+      },
+      {
+        "fdc_id": "169703",
+        "name": "brown rice",
+        "grams": 200
+      }
+    ],
+    "steps": [
+      "Cook the brown rice.",
+      "Soften onion and garlic, add tomatoes and coconut milk.",
+      "Add chickpeas, simmer 15 minutes, stir in spinach."
+    ]
+  },
+  {
+    "id": "r26",
+    "title": "Chicken couscous salad",
+    "meal_type": "lunch",
+    "servings": 3,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [],
+    "ingredients": [
+      {
+        "fdc_id": "171077",
+        "name": "chicken",
+        "grams": 250
+      },
+      {
+        "fdc_id": "169699",
+        "name": "couscous",
+        "grams": 150
+      },
+      {
+        "fdc_id": "168409",
+        "name": "cucumber",
+        "grams": 150
+      },
+      {
+        "fdc_id": "170457",
+        "name": "tomato",
+        "grams": 150
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 15
+      },
+      {
+        "fdc_id": "167747",
+        "name": "lemon",
+        "grams": 20
+      }
+    ],
+    "steps": [
+      "Pour boiling water over the couscous and cover for 5 minutes.",
+      "Grill and slice the chicken.",
+      "Mix with chopped vegetables, oil and lemon."
+    ]
+  },
+  {
+    "id": "r27",
+    "title": "Bulgur tabbouleh with feta",
+    "meal_type": "lunch",
+    "servings": 3,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "170688",
+        "name": "bulgur",
+        "grams": 150
+      },
+      {
+        "fdc_id": "170457",
+        "name": "tomato",
+        "grams": 200
+      },
+      {
+        "fdc_id": "168409",
+        "name": "cucumber",
+        "grams": 150
+      },
+      {
+        "fdc_id": "170000",
+        "name": "onion",
+        "grams": 50
+      },
+      {
+        "fdc_id": "167747",
+        "name": "lemon",
+        "grams": 30
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 20
+      },
+      {
+        "fdc_id": "173420",
+        "name": "feta",
+        "grams": 80
+      }
+    ],
+    "steps": [
+      "Soak bulgur in hot water for 20 minutes.",
+      "Chop tomato, cucumber and onion.",
+      "Mix with lemon, oil and crumbled feta."
+    ]
+  },
+  {
+    "id": "r28",
+    "title": "Cottage cheese blueberry pancakes",
+    "meal_type": "breakfast",
+    "servings": 3,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "172182",
+        "name": "cottage",
+        "grams": 250
+      },
+      {
+        "fdc_id": "171287",
+        "name": "egg",
+        "grams": 100
+      },
+      {
+        "fdc_id": "168894",
+        "name": "flour",
+        "grams": 80
+      },
+      {
+        "fdc_id": "171711",
+        "name": "blueberry",
+        "grams": 100
+      },
+      {
+        "fdc_id": "173430",
+        "name": "butter",
+        "grams": 10
+      }
+    ],
+    "steps": [
+      "Mix cottage cheese, eggs and flour into a batter.",
+      "Fold in blueberries.",
+      "Fry small pancakes in butter."
+    ]
+  },
+  {
+    "id": "r29",
+    "title": "Banana strawberry almond smoothie",
+    "meal_type": "snack",
+    "servings": 2,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian",
+      "vegan"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "172446",
+        "name": "soymilk",
+        "grams": 250
+      },
+      {
+        "fdc_id": "173944",
+        "name": "banana",
+        "grams": 120
+      },
+      {
+        "fdc_id": "167762",
+        "name": "strawberry",
+        "grams": 150
+      },
+      {
+        "fdc_id": "170567",
+        "name": "almonds",
+        "grams": 20
+      },
+      {
+        "fdc_id": "173904",
+        "name": "oats",
+        "grams": 30
+      },
+      {
+        "fdc_id": "169097",
+        "name": "orange",
+        "grams": 100
+      }
+    ],
+    "steps": [
+      "Put everything in a blender.",
+      "Blend until smooth."
+    ]
+  },
+  {
+    "id": "r30",
+    "title": "Ricotta and spinach stuffed zucchini",
+    "meal_type": "dinner",
+    "servings": 3,
+    "weight_state": "raw",
+    "cooked_weight_g": null,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "fdc_id": "169291",
+        "name": "zucchini",
+        "grams": 600
+      },
+      {
+        "fdc_id": "171248",
+        "name": "ricotta",
+        "grams": 200
+      },
+      {
+        "fdc_id": "168462",
+        "name": "spinach",
+        "grams": 100
+      },
+      {
+        "fdc_id": "171247",
+        "name": "parmesan",
+        "grams": 30
+      },
+      {
+        "fdc_id": "169230",
+        "name": "garlic",
+        "grams": 5
+      },
+      {
+        "fdc_id": "171413",
+        "name": "oil",
+        "grams": 10
+      }
+    ],
+    "steps": [
+      "Halve the zucchini and scoop out the middle.",
+      "Mix ricotta, wilted spinach, garlic and parmesan.",
+      "Fill the zucchini, drizzle with oil and bake 25 minutes."
+    ]
+  }
+]
