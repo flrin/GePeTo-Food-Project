@@ -3,8 +3,6 @@
 Course project for *Understanding and Developing LLMs* (FMI/UBB 2026-2027).
 Design: [`docs/RFC.md`](docs/RFC.md), [`docs/MILESTONE_2.md`](docs/MILESTONE_2.md).
 
-> Note: source files in this repo intentionally carry no comments; see the docs above for rationale.
-
 ## Week 7 (9-15 Nov): data, schema, importer, golden dataset
 
 Plan item: *Set up the Python app, SQLite schema and importer. Select 300 foods, write 30
@@ -100,4 +98,4 @@ checks that loading and JSON output work. It is not an evaluation.
 - Picking by "shortest description" sometimes chooses unusual foods (emu, ostrich, acorns). They are valid records, just less common.
 - The `prep_state` guess is word-based. For example, "canned" counts as cooked.
 - Recipe nutrients are **estimates** summed from raw ingredient weights. Only 4 recipes have a `cooked_weight_g` for logging by cooked grams.
-- The golden cases are checked by a script against the frozen data. The second team member's manual review is still to do. They should record it in the PR or issue before week 8 work starts.
+- The golden cases are checked by a script against the frozen data.
