@@ -3,6 +3,8 @@
 Course project for *Understanding and Developing LLMs* (FMI/UBB 2026-2027).
 Design: [`docs/RFC.md`](docs/RFC.md), [`docs/MILESTONE_2.md`](docs/MILESTONE_2.md).
 
+> Note: source files in this repo intentionally carry no comments; see the docs above for rationale.
+
 ## Week 7 (9-15 Nov): data, schema, importer, golden dataset
 
 Plan item: *Set up the Python app, SQLite schema and importer. Select 300 foods, write 30
