@@ -29,12 +29,11 @@ from .config import USDA_SOURCE, USDA_SOURCE_VERSION, Settings
 from .db import connect
 
 
-# FoodData Central nutrient ids -> our column names
 USDA_NUTRIENTS = {
-    "1008": "kcal",       # Energy (KCAL)
-    "1003": "protein_g",  # Protein
-    "1005": "carbs_g",    # Carbohydrate, by difference
-    "1004": "fat_g",      # Total lipid (fat)
+    "1008": "kcal",
+    "1003": "protein_g",
+    "1005": "carbs_g",
+    "1004": "fat_g",
 }
 NUTRIENT_FIELDS = ["kcal", "protein_g", "carbs_g", "fat_g"]
 HASHED_FIELDS = ["description", "category", "prep_state", *NUTRIENT_FIELDS, "source_version"]
@@ -79,7 +78,6 @@ def content_hash(record: dict) -> str:
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
-# ---------------------------------------------------------------- readers
 
 
 def read_usda_csv(directory: Path, fdc_ids: set[str] | None = None) -> list[dict]:
@@ -100,7 +98,6 @@ def read_usda_csv(directory: Path, fdc_ids: set[str] | None = None) -> list[dict
                 "description": row["description"],
                 "category": categories.get(row["food_category_id"]),
                 "prep_state": guess_prep_state(row["description"]),
-                # missing nutrients stay None (= NULL), never 0
                 **{name: None for name in NUTRIENT_FIELDS},
                 "source_version": USDA_SOURCE_VERSION,
                 "user_entered": False,
@@ -111,7 +108,7 @@ def read_usda_csv(directory: Path, fdc_ids: set[str] | None = None) -> list[dict
             record = records.get(row["fdc_id"])
             column = USDA_NUTRIENTS.get(row["nutrient_id"])
             if record is not None and column and row["amount"] != "":
-                record[column] = float(row["amount"])  # SR Legacy is already per 100 g
+                record[column] = float(row["amount"])
     return list(records.values())
 
 
@@ -123,7 +120,6 @@ def read_food_json(path: Path) -> list[dict]:
     return json.loads(text)
 
 
-# ---------------------------------------------------------------- validation
 
 
 def normalize_food(raw: dict) -> tuple[dict | None, list[str]]:
@@ -146,7 +142,6 @@ def normalize_food(raw: dict) -> tuple[dict | None, list[str]]:
         if not str(record.get("source_note") or "").strip():
             errors.append("user-entered food needs a source_note")
         if not str(record.get("source_id") or "").strip():
-            # stable id for user foods: derived from the name
             record["source_id"] = re.sub(r"[^a-z0-9]+", "-", str(record.get("description", "")).lower()).strip("-")
     if not str(record.get("source_id") or "").strip():
         errors.append("missing source_id")
@@ -190,7 +185,6 @@ def normalize_food(raw: dict) -> tuple[dict | None, list[str]]:
     return record, []
 
 
-# ---------------------------------------------------------------- writers
 
 
 def upsert_foods(conn: sqlite3.Connection, rows: list[dict]) -> ImportReport:
@@ -280,7 +274,7 @@ def upsert_recipes(conn: sqlite3.Connection, recipes: list[dict]) -> ImportRepor
         if existing is not None and existing["content_hash"] == digest:
             report.unchanged += 1
             continue
-        conn.execute("DELETE FROM recipes WHERE id = ?", (recipe["id"],))  # cascades ingredients
+        conn.execute("DELETE FROM recipes WHERE id = ?", (recipe["id"],))
         conn.execute(
             """INSERT INTO recipes (id, title, meal_type, servings, weight_state,
                    cooked_weight_g, tags, steps, content_hash)

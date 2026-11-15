@@ -19,10 +19,10 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from gepeto.config import DATA_DIR, EVALUATION_DIR  # noqa: E402
-from gepeto.db import connect  # noqa: E402
-from gepeto.importer import food_id_for, read_food_json, upsert_foods, upsert_recipes  # noqa: E402
-from gepeto.nutrition import NUTRIENT_FIELDS, add_up, meal_totals, recipe_per_serving  # noqa: E402
+from gepeto.config import DATA_DIR, EVALUATION_DIR
+from gepeto.db import connect
+from gepeto.importer import food_id_for, read_food_json, upsert_foods, upsert_recipes
+from gepeto.nutrition import NUTRIENT_FIELDS, add_up, meal_totals, recipe_per_serving
 
 CATEGORIES = [
     "food_lookup", "portion_calculation", "daily_summary",

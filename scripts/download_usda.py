@@ -12,7 +12,7 @@ import zipfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from gepeto.config import DATA_DIR, USDA_RELEASE  # noqa: E402
+from gepeto.config import DATA_DIR, USDA_RELEASE
 
 URL = f"https://fdc.nal.usda.gov/fdc-datasets/{USDA_RELEASE}.zip"
 SHA256 = "b80817294b8850530aaedf2e515c02593b1824f763a0ff356e5c2081643e6fd0"

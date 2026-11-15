@@ -19,10 +19,9 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from gepeto.config import DATA_DIR, USDA_RELEASE  # noqa: E402
-from gepeto.importer import NUTRIENT_FIELDS, read_usda_csv  # noqa: E402
+from gepeto.config import DATA_DIR, USDA_RELEASE
+from gepeto.importer import NUTRIENT_FIELDS, read_usda_csv
 
-# category name -> how many foods (sums to 300)
 QUOTAS = {
     "Dairy and Egg Products": 35,
     "Fats and Oils": 15,
@@ -42,82 +41,80 @@ QUOTAS = {
     "Sweets": 5,
 }
 
-# ingredients used in data/recipes.json (always selected)
 REQUIRED = [
-    "171077",  # Chicken breast, skinless, boneless, raw
-    "171287",  # Egg, whole, raw, fresh
-    "171413",  # Oil, olive
-    "168877",  # Rice, white, long-grain, raw, enriched
-    "169703",  # Rice, brown, long-grain, raw
-    "173904",  # Oats, dry
-    "172420",  # Lentils, raw
-    "173757",  # Chickpeas, cooked, boiled
-    "173735",  # Black beans, cooked, boiled
-    "172475",  # Tofu, raw, firm
-    "175167",  # Salmon, Atlantic, farmed, raw
-    "171986",  # Tuna, light, canned in water
-    "170026",  # Potatoes, raw
-    "170457",  # Tomatoes, red, raw
-    "170000",  # Onions, raw
-    "169230",  # Garlic, raw
-    "170379",  # Broccoli, raw
-    "168462",  # Spinach, raw
-    "170393",  # Carrots, raw
-    "170108",  # Red sweet pepper, raw
-    "169251",  # Mushrooms, white, raw
-    "173944",  # Bananas, raw
-    "171688",  # Apples, raw, with skin
-    "171265",  # Milk, whole
-    "170903",  # Greek yogurt, plain, lowfat
-    "173420",  # Cheese, feta
-    "171247",  # Cheese, parmesan, grated
-    "170845",  # Cheese, mozzarella
-    "169736",  # Pasta, dry
-    "172688",  # Bread, whole-wheat
-    "172470",  # Peanut butter, smooth
-    "169640",  # Honey
-    "171796",  # Ground beef 85/15, raw
-    "168409",  # Cucumber, raw
-    "169247",  # Romaine lettuce, raw
-    "171705",  # Avocado, raw
-    "168482",  # Sweet potato, raw
-    "167762",  # Strawberries, raw
-    "171711",  # Blueberries, raw
-    "167747",  # Lemon juice, raw
-    "173430",  # Butter, without salt
-    "168874",  # Quinoa, uncooked
-    "168894",  # Wheat flour, white
-    "170567",  # Almonds
-    "170187",  # Walnuts
-    "169291",  # Zucchini, raw
-    "169975",  # Cabbage, raw
-    "170419",  # Peas, green, raw
-    "169998",  # Sweet corn, raw
-    "172850",  # Turkey, ground, 93% lean, raw
-    "168249",  # Pork tenderloin, raw
-    "175179",  # Shrimp, raw
-    "172454",  # Hummus, home prepared
-    "174081",  # Tortillas, whole wheat
-    "169228",  # Eggplant, raw
-    "174285",  # Kidney beans, canned, drained
-    "170054",  # Tomato sauce, canned
-    "170554",  # Chia seeds
-    "169097",  # Oranges, raw
-    "168421",  # Kale, raw
-    "171955",  # Cod, Atlantic, raw
-    "169699",  # Couscous, dry
-    "170688",  # Bulgur, dry
-    "174277",  # Soy sauce
-    "172182",  # Cottage cheese, lowfat 2%
-    "172446",  # Soymilk, unfortified
-    "170173",  # Coconut milk, canned
-    "171248",  # Ricotta, part skim
+    "171077",
+    "171287",
+    "171413",
+    "168877",
+    "169703",
+    "173904",
+    "172420",
+    "173757",
+    "173735",
+    "172475",
+    "175167",
+    "171986",
+    "170026",
+    "170457",
+    "170000",
+    "169230",
+    "170379",
+    "168462",
+    "170393",
+    "170108",
+    "169251",
+    "173944",
+    "171688",
+    "171265",
+    "170903",
+    "173420",
+    "171247",
+    "170845",
+    "169736",
+    "172688",
+    "172470",
+    "169640",
+    "171796",
+    "168409",
+    "169247",
+    "171705",
+    "168482",
+    "167762",
+    "171711",
+    "167747",
+    "173430",
+    "168874",
+    "168894",
+    "170567",
+    "170187",
+    "169291",
+    "169975",
+    "170419",
+    "169998",
+    "172850",
+    "168249",
+    "175179",
+    "172454",
+    "174081",
+    "169228",
+    "174285",
+    "170054",
+    "170554",
+    "169097",
+    "168421",
+    "171955",
+    "169699",
+    "170688",
+    "174277",
+    "172182",
+    "172446",
+    "170173",
+    "171248",
 ]
 
-# skip odd / processed items when filling quotas
 EXCLUDE = re.compile(
     r"babyfood|infant|imitation|variety meats|by-products|dehydrated|"
-    r"\b[A-Z]{2,}\b(?<!USDA)",  # upper-case words are usually brand names
+    r"\b[A-Z]{2,}\b(?<!USDA)",
 )
 
 
@@ -132,7 +129,7 @@ def main() -> None:
         if all(food[name] is not None for name in NUTRIENT_FIELDS)
     }
 
-    chosen: dict[str, str] = {}  # fdc_id -> reason
+    chosen: dict[str, str] = {}
     for fdc_id in REQUIRED:
         if fdc_id not in complete:
             raise SystemExit(f"required food {fdc_id} missing or incomplete")
