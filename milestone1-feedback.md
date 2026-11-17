@@ -1,0 +1,1 @@
+The RFC is OK, but for the next steps, trace one recipe journey end to end: show where retrieved information and sourced nutrition data enter, and how the system checks them before presenting the recipe.
