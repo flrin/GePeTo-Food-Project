@@ -1,0 +1,1610 @@
+{
+  "server": "gepeto",
+  "transport": "stdio",
+  "tools": [
+    {
+      "name": "get_profile",
+      "description": "The user's daily targets, preferences and restrictions (no body measurements).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "title": "get_profileArguments"
+      },
+      "outputSchema": {
+        "$defs": {
+          "DietaryRules": {
+            "properties": {
+              "diets": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Diets",
+                "type": "array"
+              },
+              "exclude": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Exclude",
+                "type": "array"
+              },
+              "unapplied": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Unapplied",
+                "type": "array"
+              }
+            },
+            "required": [
+              "diets",
+              "exclude",
+              "unapplied"
+            ],
+            "title": "DietaryRules",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "goal": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Goal"
+          },
+          "targets": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "title": "Targets",
+            "type": "object"
+          },
+          "target_source": {
+            "anyOf": [
+              {
+                "enum": [
+                  "estimate",
+                  "manual"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Source"
+          },
+          "preferences": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Preferences",
+            "type": "array"
+          },
+          "restrictions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Restrictions",
+            "type": "array"
+          },
+          "dietary_rules": {
+            "$ref": "#/$defs/DietaryRules"
+          }
+        },
+        "required": [
+          "name",
+          "goal",
+          "targets",
+          "target_source",
+          "preferences",
+          "restrictions",
+          "dietary_rules"
+        ],
+        "title": "ProfileResult",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "get_daily_summary",
+      "description": "Logged meals for one day, their totals, the targets and what is left. Unknown values are null, never 0.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "description": "Local date, YYYY-MM-DD.",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "title": "Date",
+            "type": "string"
+          }
+        },
+        "required": [
+          "date"
+        ],
+        "title": "get_daily_summaryArguments"
+      },
+      "outputSchema": {
+        "$defs": {
+          "DiaryEntry": {
+            "properties": {
+              "entry_id": {
+                "title": "Entry Id",
+                "type": "integer"
+              },
+              "label": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Label"
+              },
+              "source_id": {
+                "title": "Source Id",
+                "type": "string"
+              },
+              "grams": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Grams"
+              },
+              "servings": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Servings"
+              },
+              "nutrients": {
+                "$ref": "#/$defs/Nutrients"
+              }
+            },
+            "required": [
+              "entry_id",
+              "label",
+              "source_id",
+              "grams",
+              "servings",
+              "nutrients"
+            ],
+            "title": "DiaryEntry",
+            "type": "object"
+          },
+          "LoggedMeal": {
+            "properties": {
+              "request_id": {
+                "title": "Request Id",
+                "type": "string"
+              },
+              "created_at": {
+                "title": "Created At",
+                "type": "string"
+              },
+              "items": {
+                "items": {
+                  "$ref": "#/$defs/DiaryEntry"
+                },
+                "title": "Items",
+                "type": "array"
+              },
+              "totals": {
+                "$ref": "#/$defs/Nutrients"
+              }
+            },
+            "required": [
+              "request_id",
+              "created_at",
+              "items",
+              "totals"
+            ],
+            "title": "LoggedMeal",
+            "type": "object"
+          },
+          "Nutrients": {
+            "properties": {
+              "kcal": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Kcal"
+              },
+              "protein_g": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Protein G"
+              },
+              "carbs_g": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Carbs G"
+              },
+              "fat_g": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Fat G"
+              }
+            },
+            "required": [
+              "kcal",
+              "protein_g",
+              "carbs_g",
+              "fat_g"
+            ],
+            "title": "Nutrients",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "date": {
+            "title": "Date",
+            "type": "string"
+          },
+          "meals": {
+            "items": {
+              "$ref": "#/$defs/LoggedMeal"
+            },
+            "title": "Meals",
+            "type": "array"
+          },
+          "entry_count": {
+            "title": "Entry Count",
+            "type": "integer"
+          },
+          "totals": {
+            "$ref": "#/$defs/Nutrients"
+          },
+          "targets": {
+            "$ref": "#/$defs/Nutrients"
+          },
+          "target_source": {
+            "anyOf": [
+              {
+                "enum": [
+                  "estimate",
+                  "manual"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Source"
+          },
+          "remaining": {
+            "$ref": "#/$defs/Nutrients"
+          },
+          "unknown_fields": {
+            "items": {
+              "enum": [
+                "kcal",
+                "protein_g",
+                "carbs_g",
+                "fat_g"
+              ],
+              "type": "string"
+            },
+            "title": "Unknown Fields",
+            "type": "array"
+          }
+        },
+        "required": [
+          "date",
+          "meals",
+          "entry_count",
+          "totals",
+          "targets",
+          "target_source",
+          "remaining",
+          "unknown_fields"
+        ],
+        "title": "DailySummary",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "search_foods",
+      "description": "Find food records (values per 100 g). Raw and cooked versions are separate records.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "description": "Food name, e.g. 'raw chicken breast'.",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Query",
+            "type": "string"
+          },
+          "prep_state": {
+            "anyOf": [
+              {
+                "enum": [
+                  "raw",
+                  "cooked",
+                  "unspecified"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Only foods in this state.",
+            "title": "Prep State"
+          },
+          "limit": {
+            "default": 5,
+            "maximum": 20,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "search_foodsArguments"
+      },
+      "outputSchema": {
+        "$defs": {
+          "FoodResult": {
+            "properties": {
+              "food_id": {
+                "title": "Food Id",
+                "type": "integer"
+              },
+              "source_id": {
+                "title": "Source Id",
+                "type": "string"
+              },
+              "description": {
+                "title": "Description",
+                "type": "string"
+              },
+              "category": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Category"
+              },
+              "prep_state": {
+                "enum": [
+                  "raw",
+                  "cooked",
+                  "unspecified"
+                ],
+                "title": "Prep State",
+                "type": "string"
+              },
+              "per_100g": {
+                "$ref": "#/$defs/Nutrients"
+              },
+              "unknown_fields": {
+                "items": {
+                  "enum": [
+                    "kcal",
+                    "protein_g",
+                    "carbs_g",
+                    "fat_g"
+                  ],
+                  "type": "string"
+                },
+                "title": "Unknown Fields",
+                "type": "array"
+              },
+              "version": {
+                "title": "Version",
+                "type": "integer"
+              },
+              "user_entered": {
+                "title": "User Entered",
+                "type": "boolean"
+              },
+              "matched_terms": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Matched Terms",
+                "type": "array"
+              }
+            },
+            "required": [
+              "food_id",
+              "source_id",
+              "description",
+              "category",
+              "prep_state",
+              "per_100g",
+              "unknown_fields",
+              "version",
+              "user_entered",
+              "matched_terms"
+            ],
+            "title": "FoodResult",
+            "type": "object"
+          },
+          "Nutrients": {
+            "properties": {
+              "kcal": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Kcal"
+              },
+              "protein_g": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Protein G"
+              },
+              "carbs_g": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Carbs G"
+              },
+              "fat_g": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Fat G"
+              }
+            },
+            "required": [
+              "kcal",
+              "protein_g",
+              "carbs_g",
+              "fat_g"
+            ],
+            "title": "Nutrients",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "results": {
+            "items": {
+              "$ref": "#/$defs/FoodResult"
+            },
+            "title": "Results",
+            "type": "array"
+          },
+          "retrieval": {
+            "title": "Retrieval",
+            "type": "string"
+          }
+        },
+        "required": [
+          "results",
+          "retrieval"
+        ],
+        "title": "FoodSearch",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "search_recipes",
+      "description": "Recipes that pass every hard rule (diet, excluded ingredients, kcal/protein limits). Per-serving estimates.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Words to rank by, e.g. 'lentil soup'.",
+            "title": "Query"
+          },
+          "meal_type": {
+            "anyOf": [
+              {
+                "enum": [
+                  "breakfast",
+                  "lunch",
+                  "dinner",
+                  "snack"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Meal Type"
+          },
+          "diet": {
+            "anyOf": [
+              {
+                "enum": [
+                  "vegetarian",
+                  "vegan",
+                  "pescatarian"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Extra diet rule; the profile's own restrictions always apply.",
+            "title": "Diet"
+          },
+          "require_tag": {
+            "anyOf": [
+              {
+                "maxLength": 40,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "e.g. 'pescatarian' for fish/seafood dishes.",
+            "title": "Require Tag"
+          },
+          "exclude_ingredients": {
+            "anyOf": [
+              {
+                "items": {
+                  "maxLength": 40,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "maxItems": 10,
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Ingredient words to avoid.",
+            "title": "Exclude Ingredients"
+          },
+          "max_kcal": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0,
+                "maximum": 5000,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Per serving.",
+            "title": "Max Kcal"
+          },
+          "min_protein_g": {
+            "anyOf": [
+              {
+                "maximum": 500,
+                "minimum": 0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Per serving.",
+            "title": "Min Protein G"
+          },
+          "fit_remaining_kcal_on": {
+            "anyOf": [
+              {
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Also require kcal <= what is left on this date.",
+            "title": "Fit Remaining Kcal On"
+          },
+          "limit": {
+            "default": 5,
+            "maximum": 10,
+            "minimum": 1,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "title": "search_recipesArguments"
+      },
+      "outputSchema": {
+        "$defs": {
+          "Ingredient": {
+            "properties": {
+              "name": {
+                "title": "Name",
+                "type": "string"
+              },
+              "source_id": {
+                "title": "Source Id",
+                "type": "string"
+              },
+              "grams": {
+                "title": "Grams",
+                "type": "number"
+              }
+            },
+            "required": [
+              "name",
+              "source_id",
+              "grams"
+            ],
+            "title": "Ingredient",
+            "type": "object"
+          },
+          "Nutrients": {
+            "properties": {
+              "kcal": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Kcal"
+              },
+              "protein_g": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Protein G"
+              },
+              "carbs_g": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Carbs G"
+              },
+              "fat_g": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Fat G"
+              }
+            },
+            "required": [
+              "kcal",
+              "protein_g",
+              "carbs_g",
+              "fat_g"
+            ],
+            "title": "Nutrients",
+            "type": "object"
+          },
+          "RecipeResult": {
+            "properties": {
+              "recipe_id": {
+                "title": "Recipe Id",
+                "type": "string"
+              },
+              "source_id": {
+                "title": "Source Id",
+                "type": "string"
+              },
+              "title": {
+                "title": "Title",
+                "type": "string"
+              },
+              "meal_type": {
+                "title": "Meal Type",
+                "type": "string"
+              },
+              "servings": {
+                "title": "Servings",
+                "type": "integer"
+              },
+              "weight_state": {
+                "enum": [
+                  "raw",
+                  "cooked"
+                ],
+                "title": "Weight State",
+                "type": "string"
+              },
+              "cooked_weight_g": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Cooked Weight G"
+              },
+              "tags": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Tags",
+                "type": "array"
+              },
+              "ingredients": {
+                "items": {
+                  "$ref": "#/$defs/Ingredient"
+                },
+                "title": "Ingredients",
+                "type": "array"
+              },
+              "per_serving": {
+                "$ref": "#/$defs/Nutrients"
+              },
+              "estimate": {
+                "title": "Estimate",
+                "type": "boolean"
+              },
+              "matched_terms": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Matched Terms",
+                "type": "array"
+              }
+            },
+            "required": [
+              "recipe_id",
+              "source_id",
+              "title",
+              "meal_type",
+              "servings",
+              "weight_state",
+              "cooked_weight_g",
+              "tags",
+              "ingredients",
+              "per_serving",
+              "estimate",
+              "matched_terms"
+            ],
+            "title": "RecipeResult",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "results": {
+            "items": {
+              "$ref": "#/$defs/RecipeResult"
+            },
+            "title": "Results",
+            "type": "array"
+          },
+          "total_matches": {
+            "title": "Total Matches",
+            "type": "integer"
+          },
+          "applied_rules": {
+            "additionalProperties": true,
+            "title": "Applied Rules",
+            "type": "object"
+          },
+          "excluded_by_restrictions": {
+            "title": "Excluded By Restrictions",
+            "type": "integer"
+          },
+          "unapplied_restrictions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unapplied Restrictions",
+            "type": "array"
+          },
+          "note": {
+            "title": "Note",
+            "type": "string"
+          }
+        },
+        "required": [
+          "results",
+          "total_matches",
+          "applied_rules",
+          "excluded_by_restrictions",
+          "unapplied_restrictions",
+          "note"
+        ],
+        "title": "RecipeSearch",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "calculate_meal",
+      "description": "Calories and macros for a meal, unknown fields and rule checks. Saves nothing to the diary;\n        returns a preview_id the application can ask the user to confirm.",
+      "inputSchema": {
+        "type": "object",
+        "$defs": {
+          "MealItem": {
+            "additionalProperties": false,
+            "description": "One thing eaten: a food by grams, or a recipe by servings or by cooked grams.",
+            "properties": {
+              "food_id": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0,
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "food_id from search_foods.",
+                "title": "Food Id"
+              },
+              "recipe_id": {
+                "anyOf": [
+                  {
+                    "maxLength": 20,
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "recipe_id from search_recipes.",
+                "title": "Recipe Id"
+              },
+              "grams": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0,
+                    "maximum": 5000,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Grams eaten. For a recipe: grams of the cooked dish.",
+                "title": "Grams"
+              },
+              "servings": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0,
+                    "maximum": 20,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "description": "Recipe servings eaten (recipes only).",
+                "title": "Servings"
+              }
+            },
+            "title": "MealItem",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/$defs/MealItem"
+            },
+            "maxItems": 20,
+            "minItems": 1,
+            "title": "Items",
+            "type": "array"
+          },
+          "date": {
+            "anyOf": [
+              {
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Day the meal belongs to; default today.",
+            "title": "Date"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "calculate_mealArguments"
+      },
+      "outputSchema": {
+        "$defs": {
+          "Check": {
+            "properties": {
+              "rule": {
+                "title": "Rule",
+                "type": "string"
+              },
+              "status": {
+                "enum": [
+                  "pass",
+                  "fail",
+                  "unknown"
+                ],
+                "title": "Status",
+                "type": "string"
+              },
+              "detail": {
+                "title": "Detail",
+                "type": "string"
+              }
+            },
+            "required": [
+              "rule",
+              "status",
+              "detail"
+            ],
+            "title": "Check",
+            "type": "object"
+          },
+          "Nutrients": {
+            "properties": {
+              "kcal": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Kcal"
+              },
+              "protein_g": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Protein G"
+              },
+              "carbs_g": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Carbs G"
+              },
+              "fat_g": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Fat G"
+              }
+            },
+            "required": [
+              "kcal",
+              "protein_g",
+              "carbs_g",
+              "fat_g"
+            ],
+            "title": "Nutrients",
+            "type": "object"
+          },
+          "PreviewItem": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "food",
+                  "recipe"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "food_id": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Food Id"
+              },
+              "recipe_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Recipe Id"
+              },
+              "label": {
+                "title": "Label",
+                "type": "string"
+              },
+              "source_id": {
+                "title": "Source Id",
+                "type": "string"
+              },
+              "prep_state": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Prep State"
+              },
+              "grams": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Grams"
+              },
+              "servings": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Servings"
+              },
+              "nutrients": {
+                "$ref": "#/$defs/Nutrients"
+              },
+              "unknown_fields": {
+                "items": {
+                  "enum": [
+                    "kcal",
+                    "protein_g",
+                    "carbs_g",
+                    "fat_g"
+                  ],
+                  "type": "string"
+                },
+                "title": "Unknown Fields",
+                "type": "array"
+              },
+              "estimate": {
+                "title": "Estimate",
+                "type": "boolean"
+              },
+              "checks": {
+                "items": {
+                  "$ref": "#/$defs/Check"
+                },
+                "title": "Checks",
+                "type": "array"
+              }
+            },
+            "required": [
+              "kind",
+              "food_id",
+              "recipe_id",
+              "label",
+              "source_id",
+              "prep_state",
+              "grams",
+              "servings",
+              "nutrients",
+              "unknown_fields",
+              "estimate",
+              "checks"
+            ],
+            "title": "PreviewItem",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "preview_id": {
+            "title": "Preview Id",
+            "type": "string"
+          },
+          "date": {
+            "title": "Date",
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/$defs/PreviewItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "totals": {
+            "$ref": "#/$defs/Nutrients"
+          },
+          "unknown_fields": {
+            "items": {
+              "enum": [
+                "kcal",
+                "protein_g",
+                "carbs_g",
+                "fat_g"
+              ],
+              "type": "string"
+            },
+            "title": "Unknown Fields",
+            "type": "array"
+          },
+          "estimate": {
+            "title": "Estimate",
+            "type": "boolean"
+          },
+          "day_before": {
+            "$ref": "#/$defs/Nutrients"
+          },
+          "remaining_after": {
+            "$ref": "#/$defs/Nutrients"
+          },
+          "checks": {
+            "items": {
+              "$ref": "#/$defs/Check"
+            },
+            "title": "Checks",
+            "type": "array"
+          },
+          "unapplied_restrictions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unapplied Restrictions",
+            "type": "array"
+          },
+          "logged": {
+            "title": "Logged",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "preview_id",
+          "date",
+          "items",
+          "totals",
+          "unknown_fields",
+          "estimate",
+          "day_before",
+          "remaining_after",
+          "checks",
+          "unapplied_restrictions",
+          "logged"
+        ],
+        "title": "MealPreview",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "log_meal",
+      "description": "Save a confirmed meal preview to the diary, exactly once.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "preview_id": {
+            "pattern": "^pv_[0-9a-f]{16}$",
+            "title": "Preview Id",
+            "type": "string"
+          },
+          "confirmation_token": {
+            "description": "Issued by the application, never by you.",
+            "maxLength": 128,
+            "title": "Confirmation Token",
+            "type": "string"
+          },
+          "request_id": {
+            "description": "Unique per user request; repeating it never duplicates a meal.",
+            "pattern": "^[A-Za-z0-9_.:-]{8,80}$",
+            "title": "Request Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "preview_id",
+          "confirmation_token",
+          "request_id"
+        ],
+        "title": "log_mealArguments"
+      },
+      "outputSchema": {
+        "$defs": {
+          "Nutrients": {
+            "properties": {
+              "kcal": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Kcal"
+              },
+              "protein_g": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Protein G"
+              },
+              "carbs_g": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Carbs G"
+              },
+              "fat_g": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Fat G"
+              }
+            },
+            "required": [
+              "kcal",
+              "protein_g",
+              "carbs_g",
+              "fat_g"
+            ],
+            "title": "Nutrients",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "status": {
+            "enum": [
+              "logged",
+              "already_logged"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          },
+          "preview_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Preview Id"
+          },
+          "date": {
+            "title": "Date",
+            "type": "string"
+          },
+          "entry_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Entry Ids",
+            "type": "array"
+          },
+          "totals": {
+            "$ref": "#/$defs/Nutrients"
+          }
+        },
+        "required": [
+          "status",
+          "request_id",
+          "preview_id",
+          "date",
+          "entry_ids",
+          "totals"
+        ],
+        "title": "LogResult",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "update_preferences",
+      "description": "Save one change the user explicitly confirmed (a preference, restriction or target).",
+      "inputSchema": {
+        "type": "object",
+        "$defs": {
+          "PreferenceChange": {
+            "additionalProperties": false,
+            "properties": {
+              "field": {
+                "enum": [
+                  "preferences",
+                  "restrictions",
+                  "kcal_target",
+                  "protein_target_g",
+                  "carbs_target_g",
+                  "fat_target_g"
+                ],
+                "title": "Field",
+                "type": "string"
+              },
+              "op": {
+                "description": "'add'/'remove' for lists, 'set' for targets.",
+                "enum": [
+                  "add",
+                  "remove",
+                  "set"
+                ],
+                "title": "Op",
+                "type": "string"
+              },
+              "value": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "description": "e.g. 'dislikes mushrooms', 'vegetarian', 'no shrimp', or 1900.",
+                "title": "Value"
+              }
+            },
+            "required": [
+              "field",
+              "op",
+              "value"
+            ],
+            "title": "PreferenceChange",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "change": {
+            "$ref": "#/$defs/PreferenceChange"
+          },
+          "confirmation_token": {
+            "description": "Issued by the application, never by you.",
+            "maxLength": 128,
+            "title": "Confirmation Token",
+            "type": "string"
+          }
+        },
+        "required": [
+          "change",
+          "confirmation_token"
+        ],
+        "title": "update_preferencesArguments"
+      },
+      "outputSchema": {
+        "properties": {
+          "change": {
+            "additionalProperties": true,
+            "title": "Change",
+            "type": "object"
+          },
+          "changed": {
+            "title": "Changed",
+            "type": "boolean"
+          },
+          "before": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Before"
+          },
+          "after": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "After"
+          }
+        },
+        "required": [
+          "change",
+          "changed",
+          "before",
+          "after"
+        ],
+        "title": "PreferenceResult",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ]
+}

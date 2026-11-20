@@ -4,10 +4,17 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gepeto"
-version = "0.1.0"
+version = "0.2.0"
 description = "GePeTo - LLM-powered nutrition assistant (UBB LLM course project)"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "mcp==2.3.0",
+    "fastapi==0.165.0",
+    "uvicorn==0.54.0",
+    "httpx==0.28.1",
+    "pydantic==2.14.4",
+    "streamlit==1.67.0",
+]
 
 [project.optional-dependencies]
 dev = ["pytest==9.1.1"]
