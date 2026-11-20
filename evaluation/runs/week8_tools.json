@@ -1,0 +1,659 @@
+{
+  "split": "dev",
+  "cases": 28,
+  "summary": {
+    "numeric_checks": 32,
+    "numeric_ok": 32,
+    "suggestion_checks": 8,
+    "suggestion_ok": 8,
+    "db_change_checks": 4,
+    "db_change_ok": 4,
+    "per_category": {
+      "food_lookup": 6,
+      "portion_calculation": 6,
+      "daily_summary": 6,
+      "constrained_suggestion": 6,
+      "preference_change": 4
+    },
+    "tolerance": {
+      "kcal": 1.0,
+      "grams": 0.1
+    }
+  },
+  "failures": [],
+  "results": [
+    {
+      "id": "food_lookup_01",
+      "category": "food_lookup",
+      "split": "dev",
+      "tool_calls": {
+        "calculate_meal": 1
+      },
+      "checks": [
+        {
+          "check": "kcal",
+          "expected": 120.0,
+          "actual": 120.0,
+          "ok": true
+        },
+        {
+          "check": "protein_g",
+          "expected": 22.5,
+          "actual": 22.5,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "food_lookup_02",
+      "category": "food_lookup",
+      "split": "dev",
+      "tool_calls": {
+        "calculate_meal": 1
+      },
+      "checks": [
+        {
+          "check": "protein_g",
+          "expected": 24.6,
+          "actual": 24.6,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "food_lookup_03",
+      "category": "food_lookup",
+      "split": "dev",
+      "tool_calls": {
+        "calculate_meal": 1
+      },
+      "checks": [
+        {
+          "check": "fat_g",
+          "expected": 100.0,
+          "actual": 100.0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "food_lookup_04",
+      "category": "food_lookup",
+      "split": "dev",
+      "tool_calls": {
+        "calculate_meal": 1
+      },
+      "checks": [
+        {
+          "check": "carbs_g",
+          "expected": 67.7,
+          "actual": 67.7,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "food_lookup_05",
+      "category": "food_lookup",
+      "split": "dev",
+      "tool_calls": {
+        "calculate_meal": 1
+      },
+      "checks": [
+        {
+          "check": "kcal",
+          "expected": 34.0,
+          "actual": 34.0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "food_lookup_06",
+      "category": "food_lookup",
+      "split": "dev",
+      "tool_calls": {
+        "calculate_meal": 1
+      },
+      "checks": [
+        {
+          "check": "kcal",
+          "expected": 265.0,
+          "actual": 265.0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "portion_calculation_01",
+      "category": "portion_calculation",
+      "split": "dev",
+      "tool_calls": {
+        "calculate_meal": 1
+      },
+      "checks": [
+        {
+          "check": "kcal",
+          "expected": 240.0,
+          "actual": 240.0,
+          "ok": true
+        },
+        {
+          "check": "protein_g",
+          "expected": 45.0,
+          "actual": 45.0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "portion_calculation_02",
+      "category": "portion_calculation",
+      "split": "dev",
+      "tool_calls": {
+        "calculate_meal": 1
+      },
+      "checks": [
+        {
+          "check": "kcal",
+          "expected": 141.5,
+          "actual": 142.0,
+          "ok": true
+        },
+        {
+          "check": "protein_g",
+          "expected": 15.6,
+          "actual": 15.6,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "portion_calculation_03",
+      "category": "portion_calculation",
+      "split": "dev",
+      "tool_calls": {
+        "calculate_meal": 1
+      },
+      "checks": [
+        {
+          "check": "kcal",
+          "expected": 294.2,
+          "actual": 294.0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "portion_calculation_04",
+      "category": "portion_calculation",
+      "split": "dev",
+      "tool_calls": {
+        "calculate_meal": 1
+      },
+      "checks": [
+        {
+          "check": "kcal",
+          "expected": 455.7,
+          "actual": 456.0,
+          "ok": true
+        },
+        {
+          "check": "protein_g",
+          "expected": 18.4,
+          "actual": 18.4,
+          "ok": true
+        },
+        {
+          "check": "carbs_g",
+          "expected": 66.2,
+          "actual": 66.2,
+          "ok": true
+        },
+        {
+          "check": "fat_g",
+          "expected": 13.3,
+          "actual": 13.3,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "portion_calculation_05",
+      "category": "portion_calculation",
+      "split": "dev",
+      "tool_calls": {
+        "calculate_meal": 1
+      },
+      "checks": [
+        {
+          "check": "kcal",
+          "expected": 242.1,
+          "actual": 242.0,
+          "ok": true
+        },
+        {
+          "check": "protein_g",
+          "expected": 13.4,
+          "actual": 13.4,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "portion_calculation_06",
+      "category": "portion_calculation",
+      "split": "dev",
+      "tool_calls": {
+        "calculate_meal": 1
+      },
+      "checks": [
+        {
+          "check": "kcal",
+          "expected": 1071.8,
+          "actual": 1072.0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "daily_summary_01",
+      "category": "daily_summary",
+      "split": "dev",
+      "tool_calls": {
+        "calculate_meal": 3,
+        "log_meal": 3,
+        "get_daily_summary": 1
+      },
+      "checks": [
+        {
+          "check": "kcal_logged",
+          "expected": 1136.8,
+          "actual": 1137.0,
+          "ok": true
+        },
+        {
+          "check": "kcal_remaining",
+          "expected": 863.2,
+          "actual": 863.0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "daily_summary_02",
+      "category": "daily_summary",
+      "split": "dev",
+      "tool_calls": {
+        "calculate_meal": 3,
+        "log_meal": 3,
+        "get_daily_summary": 1
+      },
+      "checks": [
+        {
+          "check": "protein_logged_g",
+          "expected": 67.6,
+          "actual": 67.6,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "daily_summary_03",
+      "category": "daily_summary",
+      "split": "dev",
+      "tool_calls": {
+        "calculate_meal": 4,
+        "log_meal": 4,
+        "get_daily_summary": 1
+      },
+      "checks": [
+        {
+          "check": "kcal_logged",
+          "expected": 762.8,
+          "actual": 763.0,
+          "ok": true
+        },
+        {
+          "check": "kcal_remaining",
+          "expected": 1437.2,
+          "actual": 1437.0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "daily_summary_04",
+      "category": "daily_summary",
+      "split": "dev",
+      "tool_calls": {
+        "calculate_meal": 2,
+        "log_meal": 2,
+        "get_daily_summary": 1
+      },
+      "checks": [
+        {
+          "check": "kcal_logged",
+          "expected": 2425.2,
+          "actual": 2425.0,
+          "ok": true
+        },
+        {
+          "check": "kcal_remaining",
+          "expected": -225.2,
+          "actual": -225.0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "daily_summary_05",
+      "category": "daily_summary",
+      "split": "dev",
+      "tool_calls": {
+        "calculate_meal": 3,
+        "log_meal": 3,
+        "get_daily_summary": 1
+      },
+      "checks": [
+        {
+          "check": "kcal_logged",
+          "expected": 991.4,
+          "actual": 991.0,
+          "ok": true
+        },
+        {
+          "check": "protein_logged_g",
+          "expected": 49.5,
+          "actual": 49.5,
+          "ok": true
+        },
+        {
+          "check": "carbs_logged_g",
+          "expected": 112.3,
+          "actual": 112.3,
+          "ok": true
+        },
+        {
+          "check": "fat_logged_g",
+          "expected": 43.1,
+          "actual": 43.1,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "daily_summary_06",
+      "category": "daily_summary",
+      "split": "dev",
+      "tool_calls": {
+        "get_daily_summary": 1
+      },
+      "checks": [
+        {
+          "check": "kcal_logged",
+          "expected": 0.0,
+          "actual": 0.0,
+          "ok": true
+        },
+        {
+          "check": "kcal_remaining",
+          "expected": 2000.0,
+          "actual": 2000.0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "constrained_suggestion_01",
+      "category": "constrained_suggestion",
+      "split": "dev",
+      "tool_calls": {
+        "search_recipes": 1
+      },
+      "checks": [
+        {
+          "check": "acceptable_recipe_ids",
+          "expected": [
+            "r24"
+          ],
+          "actual": [
+            "r24"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "constrained_suggestion_02",
+      "category": "constrained_suggestion",
+      "split": "dev",
+      "tool_calls": {
+        "search_recipes": 1
+      },
+      "checks": [
+        {
+          "check": "acceptable_recipe_ids",
+          "expected": [
+            "r19"
+          ],
+          "actual": [
+            "r19"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "constrained_suggestion_03",
+      "category": "constrained_suggestion",
+      "split": "dev",
+      "tool_calls": {
+        "search_recipes": 1
+      },
+      "checks": [
+        {
+          "check": "acceptable_recipe_ids",
+          "expected": [
+            "r07"
+          ],
+          "actual": [
+            "r07"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "constrained_suggestion_04",
+      "category": "constrained_suggestion",
+      "split": "dev",
+      "tool_calls": {
+        "search_recipes": 1
+      },
+      "checks": [
+        {
+          "check": "acceptable_recipe_ids",
+          "expected": [
+            "r06"
+          ],
+          "actual": [
+            "r06"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "constrained_suggestion_05",
+      "category": "constrained_suggestion",
+      "split": "dev",
+      "tool_calls": {
+        "search_recipes": 1
+      },
+      "checks": [
+        {
+          "check": "acceptable_recipe_ids",
+          "expected": [
+            "r02",
+            "r03",
+            "r05"
+          ],
+          "actual": [
+            "r02",
+            "r03",
+            "r05"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "constrained_suggestion_06",
+      "category": "constrained_suggestion",
+      "split": "dev",
+      "tool_calls": {
+        "search_recipes": 1
+      },
+      "checks": [
+        {
+          "check": "acceptable_recipe_ids",
+          "expected": [
+            "r11",
+            "r23",
+            "r24",
+            "r30"
+          ],
+          "actual": [
+            "r11",
+            "r23",
+            "r24",
+            "r30"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "preference_change_01",
+      "category": "preference_change",
+      "split": "dev",
+      "tool_calls": {
+        "update_preferences": 1,
+        "get_profile": 1,
+        "search_recipes": 1
+      },
+      "checks": [
+        {
+          "check": "db:preferences:add",
+          "expected": "dislikes mushrooms",
+          "actual": [
+            "dislikes mushrooms"
+          ],
+          "ok": true
+        },
+        {
+          "check": "acceptable_recipe_ids",
+          "expected": [
+            "r11",
+            "r17",
+            "r20",
+            "r23",
+            "r24",
+            "r25",
+            "r30"
+          ],
+          "actual": [
+            "r11",
+            "r17",
+            "r20",
+            "r23",
+            "r24",
+            "r25",
+            "r30"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "preference_change_03",
+      "category": "preference_change",
+      "split": "dev",
+      "tool_calls": {
+        "update_preferences": 1,
+        "get_profile": 1
+      },
+      "checks": [
+        {
+          "check": "db:restrictions:add",
+          "expected": "vegetarian",
+          "actual": [
+            "vegetarian"
+          ],
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "preference_change_04",
+      "category": "preference_change",
+      "split": "dev",
+      "tool_calls": {
+        "update_preferences": 1,
+        "get_profile": 1
+      },
+      "checks": [
+        {
+          "check": "db:kcal_target:set",
+          "expected": 1900,
+          "actual": 1900.0,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "preference_change_05",
+      "category": "preference_change",
+      "split": "dev",
+      "tool_calls": {
+        "update_preferences": 1,
+        "get_profile": 1,
+        "search_recipes": 1
+      },
+      "checks": [
+        {
+          "check": "db:restrictions:add",
+          "expected": "no shrimp",
+          "actual": [
+            "pescatarian",
+            "no shrimp"
+          ],
+          "ok": true
+        },
+        {
+          "check": "acceptable_recipe_ids",
+          "expected": [
+            "r11",
+            "r12",
+            "r19",
+            "r23",
+            "r24",
+            "r25",
+            "r30"
+          ],
+          "actual": [
+            "r11",
+            "r12",
+            "r19",
+            "r23",
+            "r24",
+            "r25",
+            "r30"
+          ],
+          "ok": true
+        }
+      ]
+    }
+  ]
+}
