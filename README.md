@@ -36,7 +36,7 @@ What the plan asked for this week: *Implement profile/target setup, diary and nu
 | Tool schemas (input and output JSON schemas, as a client sees them) | [`docs/tool_schemas.json`](docs/tool_schemas.json), made by [`scripts/export_tool_schemas.py`](scripts/export_tool_schemas.py) |
 | FastAPI app, which is also the MCP host/client | [`gepeto/api.py`](gepeto/api.py), [`gepeto/mcp_host.py`](gepeto/mcp_host.py) |
 | Confirmation tokens (only the app can approve a write) | [`gepeto/confirm.py`](gepeto/confirm.py) |
-| Form-based UI: profile and targets, logging meals, the day view | [`ui/app.py`](ui/app.py) |
+| Form UI: profile and targets, logging meals, day view | [`ui/app.py`](ui/app.py) |
 | Golden dev cases run through the real MCP tools | [`evaluation/check_tools.py`](evaluation/check_tools.py), output in [`evaluation/runs/week8_tools.json`](evaluation/runs/week8_tools.json) |
 | Numeric, duplicate-write, MCP, API and UI tests | [`tests/`](tests/), output in [`evaluation/runs/week8_pytest.txt`](evaluation/runs/week8_pytest.txt) |
 
@@ -51,7 +51,7 @@ uvicorn gepeto.api:app --port 8000                        # terminal 1: API + MC
 streamlit run ui/app.py                                   # terminal 2: the form UI
 ```
 
-If you already had a `gepeto.db` from week 7, it is upgraded automatically the first time it is opened. Run `importer recipes` once more afterwards so the recipes get their ingredient names, which are used for "no mushrooms"-type filters.
+If you already have a `gepeto.db` from week 7, it gets upgraded automatically the first time it's opened. After that, run `importer recipes` one more time so the recipes get their ingredient names (we need them for filters like "no mushrooms").
 
 ### How the parts connect
 
@@ -63,18 +63,19 @@ flowchart LR
     MCP --> TOOLS[gepeto/tools.py] --> SQL
 ```
 
-The profile form talks to FastAPI directly, because only the user fills it in. Everything the assistant will also do in week 10 (searching, calculating, logging, summarizing) already goes through the MCP server, so the form tests the same tools, schemas and protections the chat will use.
+The profile form talks to FastAPI directly, since only the user fills it in. Everything the assistant will also do in week 10 (searching, calculating, logging, summarizing) already goes through the MCP server. This way the form tests the same tools, schemas and protections that the chat will use later.
 
-FastAPI starts the MCP server as a subprocess, with the profile id and a shared secret in its environment. **No tool takes a user or profile id as an argument**, so the model can't ask about another user. A test checks this on the exported schemas.
+FastAPI starts the MCP server as a subprocess and gives it the profile id and a shared secret through the environment. **No tool takes a user or profile id as an argument**, so the model can't ask about someone else's data. There's a test that checks this on the exported schemas.
+
 
 ### Logging flow
 
 1. **Search** for a food (`search_foods`) or pick a recipe.
-2. **Calculate** (`calculate_meal`). This returns the calories and macros, any unknown fields, rule checks (diet, disliked ingredients, daily kcal target) and a `preview_id`. It saves the preview but **not** to the diary.
-3. **Save.** When the user presses *Save to diary*, FastAPI signs `(profile, preview_id)` with the secret (HMAC-SHA256) and calls `log_meal` with that token and a `request_id`. The model never sees the secret, so it can't confirm its own writes. `update_preferences` works the same way.
-4. **Day view** (`get_daily_summary`): the meals, totals, targets and what is left.
+2. **Calculate** (`calculate_meal`). It returns calories and macros, unknown fields, rule checks (diet, disliked ingredients, daily kcal target) and a `preview_id`. The preview is stored, but it is added to the diary yet.
+3. **Save.** When the user clicks *Save to diary*, FastAPI signs `(profile, preview_id)` with the secret (HMAC-SHA256) and calls `log_meal` with that token and a `request_id`. The model never sees the secret, so it can't confirm its own writes. `update_preferences` works the same way.
+4. **Day view** (`get_daily_summary`): the meals, totals, targets and how much is left.
 
-Recipes can be logged by servings, or by cooked grams when the recipe has a `cooked_weight_g`. Otherwise the tool says it can't (`missing_data`) instead of guessing.
+Recipes can be logged by servings, or by cooked grams if the recipe has a `cooked_weight_g`. If it doesn't, the tool says it can't (`missing_data`) instead of guessing.
 
 ### MCP tools
 
@@ -86,19 +87,20 @@ Recipes can be logged by servings, or by cooked grams when the recipe has a `coo
 | `search_recipes` | no | Hard rules in Python: diet, excluded ingredients, kcal/protein per serving, "fits the rest of my day". The profile's own restrictions always apply. |
 | `calculate_meal` | preview only | Foods by grams, or recipes by servings or cooked grams. |
 | `log_meal` | yes | Needs an app-issued token. Saving the same thing again never duplicates it. |
-| `update_preferences` | yes | Needs an app-issued token. Repeating the same change is harmless. |
+| `update_preferences` | yes | Needs a token issued by the app. Repeating the same change does nothing bad. |
 
-Errors carry one of these codes: `invalid_input`, `not_found`, `missing_data`, `unconfirmed`, `conflict`, `stale_preview` or `unavailable`. This is how the app tells a bad quantity apart from missing data or a service that is down.
+
+Errors have one of these codes: `invalid_input`, `not_found`, `missing_data`, `unconfirmed`, `conflict`, `stale_preview` or `unavailable`. The app uses them to tell a bad quantity apart from missing data or a service that is down.
 
 ### How we stop duplicate or unconfirmed writes
 
-- `meal_logs` has `UNIQUE (request_id, item_index)`. Saving with the same `request_id` again returns `already_logged` and adds no rows.
-- A preview can be saved only once. If the same preview comes back with a new `request_id` (for example, the model retries), it is reported as already logged.
-- Reusing a `request_id` for a different meal is a `conflict`.
-- Saving runs inside `BEGIN IMMEDIATE`, so two writers can't both pass the checks. One test starts 8 threads that confirm the same preview at the same time and checks that exactly one meal is saved.
-- If the food data changed after the preview was shown, the preview is `stale_preview` and has to be calculated again. Meals that were already saved keep their nutrient snapshot.
+- `meal_logs` has `UNIQUE (request_id, item_index)`. If you save with the same `request_id` again, you get `already_logged` and no new rows.
+- A preview can only be saved once. If the same preview comes back with a new `request_id` (for example when the model retries), it's reported as already logged.
+- Using the same `request_id` for a different meal gives a `conflict`.
+- Saving runs inside `BEGIN IMMEDIATE`, so two writers can't both pass the checks.
+- If the food data changed after the preview was shown, the preview becomes `stale_preview` and has to be calculated again. Meals that were already saved keep their own nutrient snapshot.
 - A meal with several items is saved completely or not at all.
-- The UI creates one `request_id` per preview, so double-clicking *Save* or a Streamlit rerun can't save a meal twice.
+- The UI makes one `request_id` per preview, so double-clicking *Save* or a Streamlit rerun can't save a meal twice.
 
 ### Results
 
@@ -107,9 +109,9 @@ pytest                                # 106 passed, 1 skipped (Ollama)
 python evaluation/check_tools.py      # 28 dev cases: numeric 32/32, suggestions 8/8, db changes 4/4
 ```
 
-`check_tools.py` runs every **dev** golden case that has numbers, recipe constraints or expected database changes through an MCP client session. The starting diary is seeded with `calculate_meal` + `log_meal`, numbers come from `calculate_meal` / `get_daily_summary`, suggestions from `search_recipes`, and confirmed changes go through `update_preferences`. The tolerance is the same as in week 7 (1 kcal and 0.1 g). The test split stays untouched until week 12.
+`check_tools.py` takes every **dev** golden case that has numbers, recipe constraints or expected database changes and runs it through an MCP client session. The starting diary is created with `calculate_meal` + `log_meal`, the numbers come from `calculate_meal` / `get_daily_summary`, the suggestions from `search_recipes`, and confirmed changes go through `update_preferences`. The tolerance is the same as in week 7 (1 kcal and 0.1 g).
 
-The numeric unit tests in [`tests/test_diary_numbers.py`](tests/test_diary_numbers.py) compute their expected values by hand, or straight from the JSON data files, not with `gepeto/nutrition.py`. That way a bug in our arithmetic can't make a test pass.
+In [`tests/test_diary_numbers.py`](tests/test_diary_numbers.py) the expected values are computed by hand or directly from the JSON data files, not with `gepeto/nutrition.py`. This way a bug in our own arithmetic can't make a test pass by mistake.
 
 ### Target estimate
 
@@ -119,15 +121,15 @@ kcal target    = resting energy x activity factor (1.2 - 1.9) x goal (lose 0.85 
 protein        = 1.6 g/kg (1.8 g/kg when losing), fat = 30 % of kcal, carbs = the rest
 ```
 
-The estimate is only offered for adults (18-100). If an input is missing, the form says which one, and the user can type targets instead. The profile stores whether its targets are the `estimate` or `manual`, and any edit makes them `manual`. The language model never calls the estimate and can only change a target through a confirmed `update_preferences`.
+The estimate is only available for adults (18-100). If an input is missing, the form tells you which one, and you can type the targets yourself instead. The profile remembers if its targets are the `estimate` or `manual`, and any edit turns them into `manual`. The language model never calls the estimate, and it can only change a target through a confirmed `update_preferences`.
 
 ### Known limitations (week 8)
 
-- `search_foods` is a simple keyword match (for example, "greek yogurt" also returns tofu yogurt). This is week 9's job.
-- A food's diet check comes from its USDA category. Mixed categories such as *Fats and Oils* or *Baked Products* report `unknown`, not `pass`. We have no allergen data, so a recipe without the word "shrimp" in it is not proof that it contains no shrimp.
-- Free-text restrictions we don't understand (for example "low sodium") are not ignored silently. They come back as `unapplied_restrictions`.
-- There is no login, because this is a local prototype. The profile chosen in the sidebar is the session, and only fictional profiles should be used.
-- Previews that were never saved are cleaned up after a day.
+- `search_foods` is a plain keyword match (for example "greek yogurt" also returns tofu yogurt). Fixing this is the job of week 9.
+- A food's diet check comes from its USDA category. Mixed categories like *Fats and Oils* or *Baked Products* return `unknown`, not `pass`. We don't have allergen data, so a recipe that doesn't contain the word "shrimp" is not proof that it has no shrimp.
+- Free-text restrictions we don't understand (for example "low sodium") are not silently ignored. They come back as `unapplied_restrictions`.
+- There's no login, because this is a local prototype. The profile selected in the sidebar is the session, and only fictional profiles should be used.
+- Previews that were never saved get deleted after a day.
 
 ## Setup
 
@@ -164,7 +166,7 @@ The search indexes (Chroma + BM25) are planned for week 9, so they are not here 
 A few other things we decided:
 
 - `prep_state` (`raw` / `cooked` / `unspecified`) is guessed from words in the USDA description, so raw and cooked foods stay separate records.
-- `meal_logs` keep a snapshot of the nutrients and a `food_version`, so importing new data later can't change totals from earlier days.
+- `meal_logs` store a snapshot of the nutrients and a `food_version`, so importing new data later can't change totals from earlier days.
 - `request_id` is `UNIQUE`, so the same request can't log a meal twice. (Since week 8 a meal can have several items, so the constraint is `UNIQUE (request_id, item_index)`.)
 
 ### How the 300 foods were chosen
@@ -201,7 +203,7 @@ ollama pull qwen2.5:3b
 python -m gepeto.smoke_model --out evaluation/runs/smoke_model.json
 ```
 
-Result (14 Nov 2026): `qwen2.5:3b`, 3.1B parameters, Q4_K_M GGUF (a compressed format that fits on a normal laptop). It loaded in about 3.8 s and returned valid JSON that chose `search_foods` for "200 g of raw chicken breast". This only shows that loading and JSON output work, it is **not** an evaluation of the model.
+Result (14 Nov 2026): we used `qwen2.5:3b`, a small model that runs on a normal laptop. It loaded in about 3.8 s and gave back valid JSON that picked `search_foods` for "200 g of raw chicken breast". This only shows that the model loads and can output JSON, it is **not** an evaluation of the model.
 
 ## Known limitations (week 7)
 
