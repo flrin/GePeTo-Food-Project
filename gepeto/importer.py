@@ -286,8 +286,11 @@ def upsert_recipes(conn: sqlite3.Connection, recipes: list[dict]) -> ImportRepor
             ),
         )
         conn.executemany(
-            "INSERT INTO recipe_ingredients (recipe_id, food_id, grams) VALUES (?, ?, ?)",
-            [(recipe["id"], food_id_for(conn, item["fdc_id"]), item["grams"]) for item in recipe["ingredients"]],
+            "INSERT INTO recipe_ingredients (recipe_id, food_id, grams, name) VALUES (?, ?, ?, ?)",
+            [
+                (recipe["id"], food_id_for(conn, item["fdc_id"]), item["grams"], item.get("name"))
+                for item in recipe["ingredients"]
+            ],
         )
         if existing is None:
             report.inserted += 1

@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS recipe_ingredients (
     recipe_id TEXT NOT NULL REFERENCES recipes(id) ON DELETE CASCADE,
     food_id   INTEGER NOT NULL REFERENCES foods(id),
     grams     REAL NOT NULL CHECK (grams > 0),
+    name      TEXT,
     PRIMARY KEY (recipe_id, food_id)
 );
 
@@ -51,15 +52,22 @@ CREATE TABLE IF NOT EXISTS profiles (
     protein_target_g REAL,
     carbs_target_g  REAL,
     fat_target_g    REAL,
+    target_source   TEXT CHECK (target_source IS NULL OR target_source IN ('estimate', 'manual')),
     preferences     TEXT NOT NULL DEFAULT '[]',
     restrictions    TEXT NOT NULL DEFAULT '[]'
 );
 
+-- A meal saved from one confirmed preview may have several items (one row each).
+-- They share request_id, so (request_id, item_index) is what makes a repeated
+-- request harmless: inserting the same request a second time violates UNIQUE.
 CREATE TABLE IF NOT EXISTS meal_logs (
     id           INTEGER PRIMARY KEY,
     profile_id   INTEGER NOT NULL REFERENCES profiles(id),
     log_date     TEXT NOT NULL,
-    request_id   TEXT NOT NULL UNIQUE,
+    request_id   TEXT NOT NULL,
+    item_index   INTEGER NOT NULL DEFAULT 0 CHECK (item_index >= 0),
+    preview_id   TEXT,
+    label        TEXT,
     food_id      INTEGER REFERENCES foods(id),
     food_version INTEGER,
     recipe_id    TEXT REFERENCES recipes(id),
@@ -70,7 +78,19 @@ CREATE TABLE IF NOT EXISTS meal_logs (
     carbs_g      REAL,
     fat_g        REAL,
     created_at   TEXT NOT NULL,
-    CHECK ((food_id IS NULL) <> (recipe_id IS NULL))
+    CHECK ((food_id IS NULL) <> (recipe_id IS NULL)),
+    UNIQUE (request_id, item_index)
+);
+
+-- calculate_meal stores what it showed the user here; it never touches meal_logs.
+-- log_meal copies a preview into meal_logs once (logged_request_id marks it used).
+CREATE TABLE IF NOT EXISTS meal_previews (
+    id                TEXT PRIMARY KEY,
+    profile_id        INTEGER NOT NULL REFERENCES profiles(id),
+    log_date          TEXT NOT NULL,
+    items             TEXT NOT NULL,
+    created_at        TEXT NOT NULL,
+    logged_request_id TEXT
 );
 
 CREATE TABLE IF NOT EXISTS import_runs (
