@@ -16,7 +16,8 @@ def add_food(conn, source_id="1", kcal=100.0):
 
 def test_all_tables_are_created() -> None:
     assert table_names(connect()) == [
-        "foods", "import_runs", "meal_logs", "profiles", "recipe_ingredients", "recipes",
+        "foods", "import_runs", "meal_logs", "meal_previews", "profiles",
+        "recipe_ingredients", "recipes",
     ]
 
 
