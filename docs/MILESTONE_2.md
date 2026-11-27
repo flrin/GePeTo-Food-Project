@@ -205,6 +205,4 @@ The dates follow the FMI/UBB 2026-2027 calendar. We are currently in **Week 6**.
 | **13** | **4-10 Jan 2027** | Address feedback, improve the most common failures and check the installation from a clean checkout. | Tracked fixes, labelled regression results and final demo script. |
 | **14 - Final presentation** | **11-17 Jan 2027** | Present the system, the experiments, the trade-offs and the remaining limitations. | Final report, presentation materials and tagged final version. |
 
-We will assign owners for data/evaluation, backend/tools and interface/integration in GitHub issues during Week 6, and one person may own more than one area. Each week will include an integration check and small, meaningful commits tied to these deliverables. The Week 12 review should show the project growing over time, not a single upload at the end.
-
 The main risks we see are limited hardware, ambiguous food entries and trying to do too much on the interface. If we fall behind, we will cut interface polish and postpone extra recipe features. The core commitment is profiles, reliable logging, MCP tools, one working RAG path and reproducible evaluation. We will report any remaining wrong answers and limitations honestly, and since this is our first project of this kind, we expect to learn and adjust the plan as we go.
