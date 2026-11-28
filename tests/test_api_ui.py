@@ -15,8 +15,8 @@ ANA_FORM = {"name": "Ana (fictional)", "sex": "female", "age": 28, "height_cm": 
 
 
 @pytest.fixture
-def api(db_path):
-    with TestClient(create_app(db_path=db_path, secret=SECRET)) as client:
+def api(db_path, index_dir):
+    with TestClient(create_app(db_path=db_path, secret=SECRET, index_dir=index_dir)) as client:
         yield client
 
 

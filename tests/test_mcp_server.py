@@ -86,14 +86,17 @@ def test_search_tools(ctx) -> None:
     assert recipes["results"] and all("vegan" in r["tags"] and r["per_serving"]["kcal"] <= 500 for r in recipes["results"])
 
 
-def test_stdio_server_round_trip(db_path, make_profile, food) -> None:
+def test_stdio_server_round_trip(db_path, make_profile, food, index_dir) -> None:
     """A real subprocess, started the way the FastAPI host starts it."""
     profile_id = make_profile("p_ana")
 
     async def session():
         from gepeto.confirm import Confirmations
-        conn = await ToolConnection(stdio_target(db_path, SECRET)(profile_id)).start()
+        conn = await ToolConnection(stdio_target(db_path, SECRET, index_dir)(profile_id)).start()
         try:
+            found = await conn.call("search_foods", {"query": "feta cheese"})
+            assert found["retrieval"]["method"] == "hybrid" and found["retrieval"]["index_up_to_date"] is True
+            assert found["results"][0]["source_id"] == "usda:173420"
             preview = await conn.call("calculate_meal", {"items": [{"food_id": food("171077"), "grams": 200}], "date": DAY})
             token = Confirmations(SECRET).meal_token(profile_id, preview["preview_id"])
             args = {"preview_id": preview["preview_id"], "confirmation_token": token, "request_id": "req-stdio-01"}
