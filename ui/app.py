@@ -172,12 +172,17 @@ def meal_builder(profile_id: int) -> None:
     with food_col:
         st.markdown("**Add a food**")
         query = st.text_input("Search foods", key="food_query", placeholder="e.g. raw chicken breast")
-        results = []
+        results, retrieval = [], None
         if query.strip():
             try:
-                results = api().search_foods(profile_id, query, limit=10)["results"]
+                found = api().search_foods(profile_id, query, limit=10)
+                results, retrieval = found["results"], found["retrieval"]
             except ApiError as exc:
                 show_error(exc)
+        if retrieval and retrieval["method"] != "hybrid":
+            st.caption(f"Keyword search only: {retrieval['reason']}")
+        elif retrieval and retrieval["index_up_to_date"] is False:
+            st.caption("The search index is older than the food data. Rebuild it: python -m gepeto.index build")
         if results:
             options = {r["food_id"]: r for r in results}
             chosen = st.selectbox(

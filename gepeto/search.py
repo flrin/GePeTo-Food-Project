@@ -1,8 +1,10 @@
-"""Week 8 search: a plain keyword match over SQLite plus deterministic recipe filters.
+"""Food and recipe search over SQLite records.
 
-This is only a baseline so the form and the MCP tools work end to end. Week 9
-replaces the ranking with hybrid retrieval (Chroma + BM25); the hard filters
-(diet, excluded ingredients, kcal/protein limits) stay here, in Python.
+Ranking comes from hybrid retrieval (retrieval.py: Chroma + BM25 + RRF) when a
+published index is available, and from the week 8 keyword match otherwise
+("keyword_fallback", reported in every result). The hard rules (diet, excluded
+ingredients, kcal/protein limits) are always decided here, in Python, from the
+full SQL records; retrieval only orders the records that pass them.
 """
 
 from __future__ import annotations
@@ -13,6 +15,7 @@ import sqlite3
 
 from .nutrition import NUTRIENT_FIELDS, recipe_per_serving, rounded
 from .profiles import DIETS, dietary_rules, mentions
+from .retrieval import DEPTH, Filters
 
 STOP_WORDS = {"a", "an", "and", "the", "of", "with", "in", "g", "gram", "grams", "some", "for", "me", "my"}
 
@@ -48,6 +51,16 @@ def source_ref(source: str, source_id: str) -> str:
     return f"usda:{source_id}" if source == "usda_sr_legacy" else f"{source}:{source_id}"
 
 
+def parse_source_ref(ref: str) -> tuple[str, str]:
+    """'usda:171077' -> ('usda_sr_legacy', '171077'); the inverse of source_ref."""
+    source, _, source_id = ref.partition(":")
+    return ("usda_sr_legacy" if source == "usda" else source), source_id
+
+
+def food_by_ref(conn: sqlite3.Connection, ref: str) -> sqlite3.Row | None:
+    return conn.execute("SELECT * FROM foods WHERE source = ? AND source_id = ?", parse_source_ref(ref)).fetchone()
+
+
 def food_card(row: sqlite3.Row) -> dict:
     return {
         "food_id": row["id"],
@@ -66,10 +79,11 @@ def get_food(conn: sqlite3.Connection, food_id: int) -> sqlite3.Row | None:
     return conn.execute("SELECT * FROM foods WHERE id = ?", (food_id,)).fetchone()
 
 
-def search_foods(
+def keyword_foods(
     conn: sqlite3.Connection, query: str, prep_state: str | None = None,
     category: str | None = None, limit: int = 10,
 ) -> list[dict]:
+    """The week 8 baseline: count matched query words, prefer the shortest description."""
     terms = query_terms(query)
     if not terms:
         return []
@@ -82,15 +96,39 @@ def search_foods(
         text = f"{row['description']} {row['category'] or ''}"
         matched = [term for term in terms if mentions(text, term)]
         if matched:
-            # More query words matched first, then the shortest (most generic) description.
             scored.append((-len(matched), len(row["description"]), row["id"], row, matched))
     scored.sort(key=lambda item: item[:3])
     results = []
     for *_, row, matched in scored[:limit]:
         card = food_card(row)
         card["matched_terms"] = matched
+        card["match"] = None
         results.append(card)
     return results
+
+
+def search_foods(
+    conn: sqlite3.Connection, query: str, prep_state: str | None = None,
+    category: str | None = None, limit: int = 5, retriever=None,
+) -> dict:
+    """Food candidates, best first. Each hit is mapped back to its SQL record, so the
+    values shown are always the stored ones, not the text that was indexed."""
+    if retriever is None:
+        return {"results": keyword_foods(conn, query, prep_state, category, limit),
+                "retrieval": {"method": "keyword_fallback"}}
+    equals = {key: value for key, value in (("prep_state", prep_state), ("category", category)) if value}
+    hits = retriever.search(query, Filters("food", equals), keep=limit, depth=max(DEPTH, limit))
+    results, unmapped = [], []
+    for hit in hits:
+        row = food_by_ref(conn, hit.record_id)
+        if row is None:
+            unmapped.append(hit.record_id)
+            continue
+        card = food_card(row)
+        card["matched_terms"] = hit.matched_terms
+        card["match"] = hit.evidence("hybrid")
+        results.append(card)
+    return {"results": results, "retrieval": {"method": "hybrid", "unmapped_records": unmapped}}
 
 
 def food_diet_status(row: sqlite3.Row, diet: str) -> bool | None:
@@ -159,8 +197,13 @@ def search_recipes(
     max_kcal: float | None = None,
     min_protein_g: float | None = None,
     limit: int = 5,
+    retriever=None,
 ) -> dict:
-    """Recipes that pass every hard rule. The profile's own restrictions always apply."""
+    """Recipes that pass every hard rule, ranked by the query. The profile's own restrictions always apply.
+
+    The rules are evaluated first, on the full SQL records; the ids that pass become
+    a metadata filter for both retrievers, so similarity can only reorder eligible
+    recipes. The ranked cards are checked against the rules once more at the end."""
     rules = dietary_rules(profile)
     diets = list(dict.fromkeys(rules["diets"] + ([diet] if diet else [])))
     unknown_diets = [d for d in diets if d not in DIETS]
@@ -186,12 +229,32 @@ def search_recipes(
         card = recipe_card(conn, row)
         text = " ".join([row["title"], row["meal_type"], *tags, *(i["name"] for i in card["ingredients"])])
         card["matched_terms"] = [term for term in terms if mentions(text, term)]
+        card["match"] = None
         matches.append(card)
-    if terms:
+
+    total = len(matches)
+    retrieval: dict = {"method": "filters_only"}
+    if terms and retriever is not None:
+        eligible = {card["source_id"]: card for card in matches}
+        hits = retriever.search(query, Filters("recipe", record_ids=frozenset(eligible)),
+                                keep=limit, depth=max(DEPTH, limit))
+        ranked, dropped = [], []
+        for hit in hits:
+            card = eligible.get(hit.record_id)
+            # Re-check against the complete records: never trust the index alone.
+            if card is None or recipe_violations(conn, card["recipe_id"], card["tags"], diets, exclude):
+                dropped.append(hit.record_id)
+                continue
+            ranked.append({**card, "matched_terms": hit.matched_terms, "match": hit.evidence("hybrid")})
+        matches = ranked
+        retrieval = {"method": "hybrid", "recheck_dropped": dropped}
+    elif terms:
         matches.sort(key=lambda card: -len(card["matched_terms"]))  # stable: ties keep id order
+        retrieval = {"method": "keyword_fallback"}
     return {
         "results": matches[:limit],
-        "total_matches": len(matches),
+        "retrieval": retrieval,
+        "total_matches": total,
         "applied_rules": {
             "diets": diets, "exclude_ingredients": exclude, "meal_type": meal_type,
             "require_tag": require_tag, "max_kcal": max_kcal, "min_protein_g": min_protein_g,

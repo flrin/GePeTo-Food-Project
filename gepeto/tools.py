@@ -32,6 +32,7 @@ class ToolContext:
     db_path: Path | str
     profile_id: int
     confirmations: Confirmations
+    index_dir: Path | str | None = None  # published search indexes; None = keyword fallback
 
     @contextmanager
     def db(self):
@@ -49,6 +50,40 @@ class ToolContext:
             raise GepetoError("unavailable", f"database error: {exc}") from exc
         finally:
             conn.close()
+
+
+def retriever_for(ctx: ToolContext, conn: sqlite3.Connection):
+    """(HybridRetriever or None, what to report about it). A missing or broken index
+    degrades to the keyword baseline and says so; it never fails the search."""
+    if ctx.index_dir is None:
+        return None, {"reason": "no index directory configured"}
+    from .embeddings import default_embedder
+    from .index import live
+    from .retrieval import HybridRetriever
+    try:
+        version = live(ctx.index_dir).current()
+    except Exception as exc:  # noqa: BLE001
+        return None, {"reason": f"index could not be loaded: {exc}"}
+    if version is None:
+        return None, {"reason": "no index published yet: run python -m gepeto.index build"}
+    return HybridRetriever(version, default_embedder()), {
+        "index_version": version.name, "index_up_to_date": version.is_current_for(conn)}
+
+
+def _search(ctx: ToolContext, conn: sqlite3.Connection, fn, *args, **kwargs) -> dict:
+    retriever, info = retriever_for(ctx, conn)
+    try:
+        result = fn(conn, *args, retriever=retriever, **kwargs)
+    except (GepetoError, sqlite3.Error):
+        raise
+    except Exception as exc:  # noqa: BLE001 - e.g. the embedding model can't be loaded
+        if retriever is None:
+            raise
+        info = {"reason": f"hybrid retrieval failed, used keywords: {type(exc).__name__}: {exc}"}
+        result = fn(conn, *args, retriever=None, **kwargs)
+    result["retrieval"] = {"index_version": None, "index_up_to_date": None, "reason": None,
+                           **info, **result["retrieval"]}
+    return result
 
 
 def get_profile(ctx: ToolContext) -> dict:
@@ -75,8 +110,7 @@ def search_foods(ctx: ToolContext, query: str, prep_state: str | None = None, li
     if not search.query_terms(query):
         raise GepetoError("invalid_input", "query has no searchable words")
     with ctx.db() as conn:
-        results = search.search_foods(conn, query, prep_state=prep_state, limit=limit)
-    return {"results": results, "retrieval": "keyword_baseline_week8"}
+        return _search(ctx, conn, search.search_foods, query, prep_state=prep_state, limit=limit)
 
 
 def search_recipes(
@@ -92,9 +126,10 @@ def search_recipes(
             if remaining is None:
                 raise GepetoError("missing_data", "no kcal target set, so 'fits the rest of my day' can't be checked")
             max_kcal = remaining if max_kcal is None else min(max_kcal, remaining)
-        return search.search_recipes(
-            conn, profile, query=query, meal_type=meal_type, diet=diet, require_tag=require_tag,
-            exclude_ingredients=exclude_ingredients, max_kcal=max_kcal, min_protein_g=min_protein_g, limit=limit,
+        return _search(
+            ctx, conn, search.search_recipes, profile, query=query, meal_type=meal_type, diet=diet,
+            require_tag=require_tag, exclude_ingredients=exclude_ingredients, max_kcal=max_kcal,
+            min_protein_g=min_protein_g, limit=limit,
         )
 
 

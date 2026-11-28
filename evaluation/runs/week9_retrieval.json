@@ -1,0 +1,2243 @@
+{
+  "split": "dev",
+  "index": {
+    "model": {
+      "name": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+    },
+    "dimensions": 384,
+    "distance": "cosine",
+    "chunking": {
+      "max_tokens": 200,
+      "overlap_tokens": 30,
+      "measured_with": "embedding tokenizer, title included, no special tokens"
+    },
+    "retrieval": {
+      "dense_candidates": 10,
+      "bm25_candidates": 10,
+      "rrf_k": 60,
+      "keep": 5
+    },
+    "bm25": {
+      "k1": 1.5,
+      "b": 0.75
+    },
+    "records": 330,
+    "chunks": 330,
+    "chunk_parts": {
+      "food:card": 300,
+      "recipe:full": 30
+    },
+    "max_chunk_tokens": 143
+  },
+  "summary": {
+    "retrieval": {
+      "hybrid": {
+        "cases": 21,
+        "recall_at_5": 0.8617,
+        "capped_recall_at_5": 0.8698,
+        "hit_at_5": "21/21",
+        "mrr_at_5": 0.8294,
+        "relevant_found": "26/41"
+      },
+      "dense": {
+        "cases": 21,
+        "recall_at_5": 0.839,
+        "capped_recall_at_5": 0.8444,
+        "hit_at_5": "21/21",
+        "mrr_at_5": 0.7476,
+        "relevant_found": "24/41"
+      },
+      "bm25": {
+        "cases": 21,
+        "recall_at_5": 0.784,
+        "capped_recall_at_5": 0.7976,
+        "hit_at_5": "18/21",
+        "mrr_at_5": 0.8095,
+        "relevant_found": "28/41"
+      }
+    },
+    "retrieval_by_kind": {
+      "food": {
+        "hybrid": {
+          "cases": 11,
+          "recall_at_5": 0.9545,
+          "capped_recall_at_5": 0.9545,
+          "hit_at_5": "11/11",
+          "mrr_at_5": 0.8636,
+          "relevant_found": "13/14"
+        },
+        "dense": {
+          "cases": 11,
+          "recall_at_5": 0.9545,
+          "capped_recall_at_5": 0.9545,
+          "hit_at_5": "11/11",
+          "mrr_at_5": 0.7652,
+          "relevant_found": "13/14"
+        },
+        "bm25": {
+          "cases": 11,
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": "11/11",
+          "mrr_at_5": 0.9545,
+          "relevant_found": "14/14"
+        }
+      },
+      "recipe": {
+        "hybrid": {
+          "cases": 10,
+          "recall_at_5": 0.7595,
+          "capped_recall_at_5": 0.7767,
+          "hit_at_5": "10/10",
+          "mrr_at_5": 0.7917,
+          "relevant_found": "13/27"
+        },
+        "dense": {
+          "cases": 10,
+          "recall_at_5": 0.7119,
+          "capped_recall_at_5": 0.7233,
+          "hit_at_5": "10/10",
+          "mrr_at_5": 0.7283,
+          "relevant_found": "11/27"
+        },
+        "bm25": {
+          "cases": 10,
+          "recall_at_5": 0.5464,
+          "capped_recall_at_5": 0.575,
+          "hit_at_5": "7/10",
+          "mrr_at_5": 0.65,
+          "relevant_found": "14/27"
+        }
+      }
+    },
+    "tool": {
+      "cases": 21,
+      "recall_at_5": 0.949,
+      "capped_recall_at_5": 0.9762,
+      "hit_at_5": "21/21",
+      "mrr_at_5": 0.9286,
+      "relevant_found": "36/41"
+    },
+    "tool_all_results_acceptable": "8/8",
+    "tool_methods": [
+      "hybrid"
+    ]
+  },
+  "results": [
+    {
+      "id": "food_lookup_01",
+      "category": "food_lookup",
+      "kind": "food",
+      "question": "How many calories and grams of protein are in 100 g of raw chicken breast?",
+      "relevant": [
+        "usda:171077"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "usda:171116",
+            "usda:171077",
+            "usda:173564",
+            "usda:171119",
+            "usda:169886"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 0.5,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:171077": 2
+          }
+        },
+        "dense": {
+          "top5": [
+            "usda:171116",
+            "usda:173564",
+            "usda:171119",
+            "usda:171077",
+            "usda:171505"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 0.25,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:171077": 4
+          }
+        },
+        "bm25": {
+          "top5": [
+            "usda:171077",
+            "usda:171116",
+            "usda:173564",
+            "usda:169886",
+            "usda:171119"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:171077": 1
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_foods",
+        "arguments": {
+          "query": "How many calories and grams of protein are in 100 g of raw chicken breast?",
+          "limit": 5
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "usda:171116",
+          "usda:171077",
+          "usda:173564",
+          "usda:171119",
+          "usda:169886"
+        ],
+        "total_matches": null,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 0.5,
+        "missed": []
+      }
+    },
+    {
+      "id": "food_lookup_02",
+      "category": "food_lookup",
+      "kind": "food",
+      "question": "What's the protein content of raw lentils per 100 grams?",
+      "relevant": [
+        "usda:172420"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "usda:172420",
+            "usda:171116",
+            "usda:167754",
+            "usda:170419",
+            "usda:167758"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:172420": 1
+          }
+        },
+        "dense": {
+          "top5": [
+            "usda:172420",
+            "usda:171116",
+            "usda:170419",
+            "usda:171505",
+            "usda:168412"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:172420": 1
+          }
+        },
+        "bm25": {
+          "top5": [
+            "usda:172420",
+            "usda:167754",
+            "usda:167758",
+            "usda:167759",
+            "usda:167761"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:172420": 1
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_foods",
+        "arguments": {
+          "query": "What's the protein content of raw lentils per 100 grams?",
+          "limit": 5
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "usda:172420",
+          "usda:171116",
+          "usda:167754",
+          "usda:170419",
+          "usda:167758"
+        ],
+        "total_matches": null,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": []
+      }
+    },
+    {
+      "id": "food_lookup_03",
+      "category": "food_lookup",
+      "kind": "food",
+      "question": "How much fat is in 100 g of olive oil?",
+      "relevant": [
+        "usda:171413"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "usda:171413",
+            "usda:171015",
+            "usda:171425",
+            "usda:171031",
+            "usda:172336"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:171413": 1
+          }
+        },
+        "dense": {
+          "top5": [
+            "usda:171413",
+            "usda:172336",
+            "usda:173572",
+            "usda:171425",
+            "usda:171015"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:171413": 1
+          }
+        },
+        "bm25": {
+          "top5": [
+            "usda:171413",
+            "usda:171015",
+            "usda:171030",
+            "usda:171031",
+            "usda:171412"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:171413": 1
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_foods",
+        "arguments": {
+          "query": "How much fat is in 100 g of olive oil?",
+          "limit": 5
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "usda:171413",
+          "usda:171015",
+          "usda:171425",
+          "usda:171031",
+          "usda:172336"
+        ],
+        "total_matches": null,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": []
+      }
+    },
+    {
+      "id": "food_lookup_04",
+      "category": "food_lookup",
+      "kind": "food",
+      "question": "Tell me the carbs in 100 g of dry oats.",
+      "relevant": [
+        "usda:173904"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "usda:173904",
+            "usda:173576",
+            "usda:168872",
+            "usda:173916",
+            "usda:169699"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:173904": 1
+          }
+        },
+        "dense": {
+          "top5": [
+            "usda:173904",
+            "usda:173576",
+            "usda:168872",
+            "usda:173916",
+            "usda:172686"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:173904": 1
+          }
+        },
+        "bm25": {
+          "top5": [
+            "usda:173904",
+            "usda:173576",
+            "usda:169699",
+            "usda:170688",
+            "usda:168872"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:173904": 1
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_foods",
+        "arguments": {
+          "query": "Tell me the carbs in 100 g of dry oats.",
+          "limit": 5
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "usda:173904",
+          "usda:173576",
+          "usda:168872",
+          "usda:173916",
+          "usda:169699"
+        ],
+        "total_matches": null,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": []
+      }
+    },
+    {
+      "id": "food_lookup_05",
+      "category": "food_lookup",
+      "kind": "food",
+      "question": "Calories in raw broccoli per 100 g?",
+      "relevant": [
+        "usda:170379"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "usda:170379",
+            "usda:169975",
+            "usda:167754",
+            "usda:170108",
+            "usda:167758"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:170379": 1
+          }
+        },
+        "dense": {
+          "top5": [
+            "usda:170379",
+            "usda:169975",
+            "usda:170108",
+            "usda:169230",
+            "usda:168412"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:170379": 1
+          }
+        },
+        "bm25": {
+          "top5": [
+            "usda:170379",
+            "usda:167754",
+            "usda:167758",
+            "usda:167759",
+            "usda:167761"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:170379": 1
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_foods",
+        "arguments": {
+          "query": "Calories in raw broccoli per 100 g?",
+          "limit": 5
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "usda:170379",
+          "usda:169975",
+          "usda:167754",
+          "usda:170108",
+          "usda:167758"
+        ],
+        "total_matches": null,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": []
+      }
+    },
+    {
+      "id": "food_lookup_06",
+      "category": "food_lookup",
+      "kind": "food",
+      "question": "How many calories are in 100 g of feta cheese?",
+      "relevant": [
+        "usda:173420"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "usda:173420",
+            "usda:170844",
+            "usda:170843",
+            "usda:172176",
+            "usda:171251"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:173420": 1
+          }
+        },
+        "dense": {
+          "top5": [
+            "usda:173420",
+            "usda:172176",
+            "usda:170844",
+            "usda:171251",
+            "usda:170845"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:173420": 1
+          }
+        },
+        "bm25": {
+          "top5": [
+            "usda:173420",
+            "usda:170843",
+            "usda:170844",
+            "usda:170850",
+            "usda:170852"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:173420": 1
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_foods",
+        "arguments": {
+          "query": "How many calories are in 100 g of feta cheese?",
+          "limit": 5
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "usda:173420",
+          "usda:170844",
+          "usda:170843",
+          "usda:172176",
+          "usda:171251"
+        ],
+        "total_matches": null,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": []
+      }
+    },
+    {
+      "id": "portion_calculation_01",
+      "category": "portion_calculation",
+      "kind": "food",
+      "question": "What are the calories and protein in 200 g of raw chicken breast?",
+      "relevant": [
+        "usda:171077"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "usda:171116",
+            "usda:171077",
+            "usda:171119",
+            "usda:173564",
+            "usda:169886"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 0.5,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:171077": 2
+          }
+        },
+        "dense": {
+          "top5": [
+            "usda:171116",
+            "usda:171119",
+            "usda:171077",
+            "usda:173564",
+            "usda:171505"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 0.3333333333333333,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:171077": 3
+          }
+        },
+        "bm25": {
+          "top5": [
+            "usda:171077",
+            "usda:171116",
+            "usda:173564",
+            "usda:169886",
+            "usda:171119"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:171077": 1
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_foods",
+        "arguments": {
+          "query": "What are the calories and protein in 200 g of raw chicken breast?",
+          "limit": 5
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "usda:171116",
+          "usda:171077",
+          "usda:171119",
+          "usda:173564",
+          "usda:169886"
+        ],
+        "total_matches": null,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 0.5,
+        "missed": []
+      }
+    },
+    {
+      "id": "portion_calculation_02",
+      "category": "portion_calculation",
+      "kind": "food",
+      "question": "I'm having 150 g of plain lowfat Greek yogurt with 100 g of strawberries. Calories and protein?",
+      "relevant": [
+        "usda:170903",
+        "usda:167762"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "usda:170903",
+            "usda:167762",
+            "usda:172182",
+            "usda:169642",
+            "usda:173428"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:170903": 1,
+            "usda:167762": 2
+          }
+        },
+        "dense": {
+          "top5": [
+            "usda:170903",
+            "usda:167762",
+            "usda:173428",
+            "usda:169642",
+            "usda:172182"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:170903": 1,
+            "usda:167762": 2
+          }
+        },
+        "bm25": {
+          "top5": [
+            "usda:170903",
+            "usda:167762",
+            "usda:172182",
+            "usda:167722",
+            "usda:168820"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:170903": 1,
+            "usda:167762": 2
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_foods",
+        "arguments": {
+          "query": "I'm having 150 g of plain lowfat Greek yogurt with 100 g of strawberries. Calories and protein?",
+          "limit": 5
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "usda:170903",
+          "usda:167762",
+          "usda:172182",
+          "usda:169642",
+          "usda:173428"
+        ],
+        "total_matches": null,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": []
+      }
+    },
+    {
+      "id": "portion_calculation_03",
+      "category": "portion_calculation",
+      "kind": "food",
+      "question": "How many calories are in two raw eggs (100 g) plus 60 g of whole-wheat bread?",
+      "relevant": [
+        "usda:171287",
+        "usda:172688"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "usda:172688",
+            "usda:172686",
+            "usda:172673",
+            "usda:171287",
+            "usda:172684"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:171287": 4,
+            "usda:172688": 1
+          }
+        },
+        "dense": {
+          "top5": [
+            "usda:172673",
+            "usda:172686",
+            "usda:172688",
+            "usda:171287",
+            "usda:172684"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 0.3333333333333333,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:171287": 4,
+            "usda:172688": 3
+          }
+        },
+        "bm25": {
+          "top5": [
+            "usda:172688",
+            "usda:171287",
+            "usda:172686",
+            "usda:174081",
+            "usda:172673"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:171287": 2,
+            "usda:172688": 1
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_foods",
+        "arguments": {
+          "query": "How many calories are in two raw eggs (100 g) plus 60 g of whole-wheat bread?",
+          "limit": 5
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "usda:172688",
+          "usda:172686",
+          "usda:172673",
+          "usda:171287",
+          "usda:172684"
+        ],
+        "total_matches": null,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": []
+      }
+    },
+    {
+      "id": "portion_calculation_04",
+      "category": "portion_calculation",
+      "kind": "food",
+      "question": "Calories, protein, carbs and fat in 80 g of dry oats cooked with 250 g of whole milk?",
+      "relevant": [
+        "usda:173904",
+        "usda:171265"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "usda:173904",
+            "usda:173576",
+            "usda:168872",
+            "usda:170845",
+            "usda:173428"
+          ],
+          "recall_at_5": 0.5,
+          "capped_recall_at_5": 0.5,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [
+            "usda:171265"
+          ],
+          "rank_in_top10": {
+            "usda:173904": 1,
+            "usda:171265": 6
+          }
+        },
+        "dense": {
+          "top5": [
+            "usda:173904",
+            "usda:173428",
+            "usda:168872",
+            "usda:173418",
+            "usda:171287"
+          ],
+          "recall_at_5": 0.5,
+          "capped_recall_at_5": 0.5,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [
+            "usda:171265"
+          ],
+          "rank_in_top10": {
+            "usda:173904": 1,
+            "usda:171265": null
+          }
+        },
+        "bm25": {
+          "top5": [
+            "usda:170845",
+            "usda:173904",
+            "usda:171265",
+            "usda:170173",
+            "usda:173576"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 0.5,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:173904": 2,
+            "usda:171265": 3
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_foods",
+        "arguments": {
+          "query": "Calories, protein, carbs and fat in 80 g of dry oats cooked with 250 g of whole milk?",
+          "limit": 5
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "usda:173904",
+          "usda:173576",
+          "usda:168872",
+          "usda:170845",
+          "usda:173428"
+        ],
+        "total_matches": null,
+        "recall_at_5": 0.5,
+        "capped_recall_at_5": 0.5,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": [
+          "usda:171265"
+        ]
+      }
+    },
+    {
+      "id": "portion_calculation_05",
+      "category": "portion_calculation",
+      "kind": "recipe",
+      "question": "One serving of the lentil soup recipe - how many calories and how much protein?",
+      "relevant": [
+        "recipe:r08"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "recipe:r08",
+            "recipe:r22",
+            "recipe:r10",
+            "recipe:r09",
+            "recipe:r27"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "recipe:r08": 1
+          }
+        },
+        "dense": {
+          "top5": [
+            "recipe:r08",
+            "recipe:r27",
+            "recipe:r07",
+            "recipe:r19",
+            "recipe:r22"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "recipe:r08": 1
+          }
+        },
+        "bm25": {
+          "top5": [
+            "recipe:r08",
+            "recipe:r01",
+            "recipe:r03",
+            "recipe:r04",
+            "recipe:r22"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "recipe:r08": 1
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "One serving of the lentil soup recipe - how many calories and how much protein?",
+          "limit": 5
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "recipe:r08",
+          "recipe:r11",
+          "recipe:r21",
+          "recipe:r04",
+          "recipe:r29"
+        ],
+        "total_matches": 9,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": []
+      }
+    },
+    {
+      "id": "portion_calculation_06",
+      "category": "portion_calculation",
+      "kind": "recipe",
+      "question": "If I eat two servings of chicken, rice and broccoli, what is the total in calories?",
+      "relevant": [
+        "recipe:r07"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "recipe:r07",
+            "recipe:r12",
+            "recipe:r26",
+            "recipe:r25",
+            "recipe:r16"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "recipe:r07": 1
+          }
+        },
+        "dense": {
+          "top5": [
+            "recipe:r07",
+            "recipe:r12",
+            "recipe:r16",
+            "recipe:r09",
+            "recipe:r27"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "recipe:r07": 1
+          }
+        },
+        "bm25": {
+          "top5": [
+            "recipe:r07",
+            "recipe:r12",
+            "recipe:r24",
+            "recipe:r26",
+            "recipe:r13"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "recipe:r07": 1
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "If I eat two servings of chicken, rice and broccoli, what is the total in calories?",
+          "limit": 5
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "recipe:r07",
+          "recipe:r12",
+          "recipe:r26",
+          "recipe:r25",
+          "recipe:r16"
+        ],
+        "total_matches": 30,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": []
+      }
+    },
+    {
+      "id": "constrained_suggestion_01",
+      "category": "constrained_suggestion",
+      "kind": "recipe",
+      "question": "Suggest a vegetarian dinner below 600 kcal with at least 20 g of protein.",
+      "relevant": [
+        "recipe:r24"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "recipe:r24",
+            "recipe:r25",
+            "recipe:r30",
+            "recipe:r15",
+            "recipe:r11"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "recipe:r24": 1
+          }
+        },
+        "dense": {
+          "top5": [
+            "recipe:r24",
+            "recipe:r25",
+            "recipe:r09",
+            "recipe:r16",
+            "recipe:r27"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "recipe:r24": 1
+          }
+        },
+        "bm25": {
+          "top5": [
+            "recipe:r11",
+            "recipe:r23",
+            "recipe:r15",
+            "recipe:r30",
+            "recipe:r25"
+          ],
+          "recall_at_5": 0.0,
+          "capped_recall_at_5": 0.0,
+          "hit_at_5": false,
+          "reciprocal_rank": 0.0,
+          "missed": [
+            "recipe:r24"
+          ],
+          "rank_in_top10": {
+            "recipe:r24": 6
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "Suggest a vegetarian dinner below 600 kcal with at least 20 g of protein.",
+          "limit": 5,
+          "meal_type": "dinner",
+          "diet": "vegetarian",
+          "max_kcal": 600,
+          "min_protein_g": 20
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "recipe:r24"
+        ],
+        "total_matches": 1,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": [],
+        "all_results_acceptable": true
+      }
+    },
+    {
+      "id": "constrained_suggestion_02",
+      "category": "constrained_suggestion",
+      "kind": "recipe",
+      "question": "Can you suggest a fish or seafood dinner under 550 kcal?",
+      "relevant": [
+        "recipe:r19"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "recipe:r18",
+            "recipe:r12",
+            "recipe:r19",
+            "recipe:r15",
+            "recipe:r11"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 0.3333333333333333,
+          "missed": [],
+          "rank_in_top10": {
+            "recipe:r19": 3
+          }
+        },
+        "dense": {
+          "top5": [
+            "recipe:r18",
+            "recipe:r12",
+            "recipe:r10",
+            "recipe:r19",
+            "recipe:r07"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 0.25,
+          "missed": [],
+          "rank_in_top10": {
+            "recipe:r19": 4
+          }
+        },
+        "bm25": {
+          "top5": [
+            "recipe:r11",
+            "recipe:r18",
+            "recipe:r17",
+            "recipe:r12",
+            "recipe:r20"
+          ],
+          "recall_at_5": 0.0,
+          "capped_recall_at_5": 0.0,
+          "hit_at_5": false,
+          "reciprocal_rank": 0.0,
+          "missed": [
+            "recipe:r19"
+          ],
+          "rank_in_top10": {
+            "recipe:r19": 8
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "Can you suggest a fish or seafood dinner under 550 kcal?",
+          "limit": 5,
+          "meal_type": "dinner",
+          "diet": "pescatarian",
+          "require_tag": "pescatarian",
+          "exclude_ingredients": [
+            "mushroom"
+          ],
+          "max_kcal": 550
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "recipe:r19"
+        ],
+        "total_matches": 1,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": [],
+        "all_results_acceptable": true
+      }
+    },
+    {
+      "id": "constrained_suggestion_03",
+      "category": "constrained_suggestion",
+      "kind": "recipe",
+      "question": "I want a high-protein lunch, at least 30 g of protein.",
+      "relevant": [
+        "recipe:r07"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "recipe:r22",
+            "recipe:r10",
+            "recipe:r09",
+            "recipe:r07",
+            "recipe:r26"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 0.25,
+          "missed": [],
+          "rank_in_top10": {
+            "recipe:r07": 4
+          }
+        },
+        "dense": {
+          "top5": [
+            "recipe:r07",
+            "recipe:r22",
+            "recipe:r26",
+            "recipe:r10",
+            "recipe:r27"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "recipe:r07": 1
+          }
+        },
+        "bm25": {
+          "top5": [
+            "recipe:r22",
+            "recipe:r10",
+            "recipe:r09",
+            "recipe:r21",
+            "recipe:r08"
+          ],
+          "recall_at_5": 0.0,
+          "capped_recall_at_5": 0.0,
+          "hit_at_5": false,
+          "reciprocal_rank": 0.0,
+          "missed": [
+            "recipe:r07"
+          ],
+          "rank_in_top10": {
+            "recipe:r07": 9
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "I want a high-protein lunch, at least 30 g of protein.",
+          "limit": 5,
+          "meal_type": "lunch",
+          "min_protein_g": 30
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "recipe:r07"
+        ],
+        "total_matches": 1,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": [],
+        "all_results_acceptable": true
+      }
+    },
+    {
+      "id": "constrained_suggestion_04",
+      "category": "constrained_suggestion",
+      "kind": "recipe",
+      "question": "What vegan breakfast under 300 kcal can I make?",
+      "relevant": [
+        "recipe:r06"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "recipe:r06",
+            "recipe:r04",
+            "recipe:r02",
+            "recipe:r08",
+            "recipe:r16"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "recipe:r06": 1
+          }
+        },
+        "dense": {
+          "top5": [
+            "recipe:r24",
+            "recipe:r06",
+            "recipe:r02",
+            "recipe:r04",
+            "recipe:r28"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 0.5,
+          "missed": [],
+          "rank_in_top10": {
+            "recipe:r06": 2
+          }
+        },
+        "bm25": {
+          "top5": [
+            "recipe:r04",
+            "recipe:r06",
+            "recipe:r29",
+            "recipe:r21",
+            "recipe:r11"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 0.5,
+          "missed": [],
+          "rank_in_top10": {
+            "recipe:r06": 2
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "What vegan breakfast under 300 kcal can I make?",
+          "limit": 5,
+          "meal_type": "breakfast",
+          "diet": "vegan",
+          "max_kcal": 300
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "recipe:r06"
+        ],
+        "total_matches": 1,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": [],
+        "all_results_acceptable": true
+      }
+    },
+    {
+      "id": "constrained_suggestion_05",
+      "category": "constrained_suggestion",
+      "kind": "recipe",
+      "question": "Give me a breakfast with at least 20 g protein and under 400 kcal.",
+      "relevant": [
+        "recipe:r02",
+        "recipe:r03",
+        "recipe:r05"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "recipe:r02",
+            "recipe:r04",
+            "recipe:r03",
+            "recipe:r01",
+            "recipe:r28"
+          ],
+          "recall_at_5": 0.6666666666666666,
+          "capped_recall_at_5": 0.6666666666666666,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [
+            "recipe:r05"
+          ],
+          "rank_in_top10": {
+            "recipe:r02": 1,
+            "recipe:r03": 3,
+            "recipe:r05": 6
+          }
+        },
+        "dense": {
+          "top5": [
+            "recipe:r02",
+            "recipe:r01",
+            "recipe:r28",
+            "recipe:r27",
+            "recipe:r04"
+          ],
+          "recall_at_5": 0.3333333333333333,
+          "capped_recall_at_5": 0.3333333333333333,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [
+            "recipe:r03",
+            "recipe:r05"
+          ],
+          "rank_in_top10": {
+            "recipe:r02": 1,
+            "recipe:r03": 7,
+            "recipe:r05": 10
+          }
+        },
+        "bm25": {
+          "top5": [
+            "recipe:r03",
+            "recipe:r04",
+            "recipe:r05",
+            "recipe:r02",
+            "recipe:r06"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "recipe:r02": 4,
+            "recipe:r03": 1,
+            "recipe:r05": 3
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "Give me a breakfast with at least 20 g protein and under 400 kcal.",
+          "limit": 5,
+          "meal_type": "breakfast",
+          "max_kcal": 400,
+          "min_protein_g": 20
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "recipe:r03",
+          "recipe:r02",
+          "recipe:r05"
+        ],
+        "total_matches": 3,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": [],
+        "all_results_acceptable": true
+      }
+    },
+    {
+      "id": "constrained_suggestion_06",
+      "category": "constrained_suggestion",
+      "kind": "recipe",
+      "question": "Suggest a vegetarian dinner under 450 kcal.",
+      "relevant": [
+        "recipe:r11",
+        "recipe:r23",
+        "recipe:r24",
+        "recipe:r30"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "recipe:r30",
+            "recipe:r24",
+            "recipe:r25",
+            "recipe:r15",
+            "recipe:r20"
+          ],
+          "recall_at_5": 0.5,
+          "capped_recall_at_5": 0.5,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [
+            "recipe:r11",
+            "recipe:r23"
+          ],
+          "rank_in_top10": {
+            "recipe:r11": 6,
+            "recipe:r23": 7,
+            "recipe:r24": 2,
+            "recipe:r30": 1
+          }
+        },
+        "dense": {
+          "top5": [
+            "recipe:r24",
+            "recipe:r30",
+            "recipe:r25",
+            "recipe:r16",
+            "recipe:r15"
+          ],
+          "recall_at_5": 0.5,
+          "capped_recall_at_5": 0.5,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [
+            "recipe:r11",
+            "recipe:r23"
+          ],
+          "rank_in_top10": {
+            "recipe:r11": null,
+            "recipe:r23": null,
+            "recipe:r24": 1,
+            "recipe:r30": 2
+          }
+        },
+        "bm25": {
+          "top5": [
+            "recipe:r11",
+            "recipe:r23",
+            "recipe:r15",
+            "recipe:r30",
+            "recipe:r25"
+          ],
+          "recall_at_5": 0.75,
+          "capped_recall_at_5": 0.75,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [
+            "recipe:r24"
+          ],
+          "rank_in_top10": {
+            "recipe:r11": 1,
+            "recipe:r23": 2,
+            "recipe:r24": 6,
+            "recipe:r30": 4
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "Suggest a vegetarian dinner under 450 kcal.",
+          "limit": 5,
+          "meal_type": "dinner",
+          "diet": "vegetarian",
+          "exclude_ingredients": [
+            "mushroom"
+          ],
+          "max_kcal": 450
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "recipe:r11",
+          "recipe:r24",
+          "recipe:r30",
+          "recipe:r23"
+        ],
+        "total_matches": 4,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": [],
+        "all_results_acceptable": true
+      }
+    },
+    {
+      "id": "preference_change_01",
+      "category": "preference_change",
+      "kind": "recipe",
+      "question": "Suggest a dinner under 500 kcal.",
+      "relevant": [
+        "recipe:r11",
+        "recipe:r17",
+        "recipe:r20",
+        "recipe:r23",
+        "recipe:r24",
+        "recipe:r25",
+        "recipe:r30"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "recipe:r17",
+            "recipe:r12",
+            "recipe:r18",
+            "recipe:r15",
+            "recipe:r19"
+          ],
+          "recall_at_5": 0.14285714285714285,
+          "capped_recall_at_5": 0.2,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [
+            "recipe:r11",
+            "recipe:r20",
+            "recipe:r23",
+            "recipe:r24",
+            "recipe:r25",
+            "recipe:r30"
+          ],
+          "rank_in_top10": {
+            "recipe:r11": 7,
+            "recipe:r17": 1,
+            "recipe:r20": 9,
+            "recipe:r23": null,
+            "recipe:r24": null,
+            "recipe:r25": null,
+            "recipe:r30": null
+          }
+        },
+        "dense": {
+          "top5": [
+            "recipe:r07",
+            "recipe:r27",
+            "recipe:r17",
+            "recipe:r12",
+            "recipe:r15"
+          ],
+          "recall_at_5": 0.14285714285714285,
+          "capped_recall_at_5": 0.2,
+          "hit_at_5": true,
+          "reciprocal_rank": 0.3333333333333333,
+          "missed": [
+            "recipe:r11",
+            "recipe:r20",
+            "recipe:r23",
+            "recipe:r24",
+            "recipe:r25",
+            "recipe:r30"
+          ],
+          "rank_in_top10": {
+            "recipe:r11": null,
+            "recipe:r17": 3,
+            "recipe:r20": null,
+            "recipe:r23": null,
+            "recipe:r24": null,
+            "recipe:r25": null,
+            "recipe:r30": null
+          }
+        },
+        "bm25": {
+          "top5": [
+            "recipe:r11",
+            "recipe:r18",
+            "recipe:r17",
+            "recipe:r12",
+            "recipe:r20"
+          ],
+          "recall_at_5": 0.42857142857142855,
+          "capped_recall_at_5": 0.6,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [
+            "recipe:r23",
+            "recipe:r24",
+            "recipe:r25",
+            "recipe:r30"
+          ],
+          "rank_in_top10": {
+            "recipe:r11": 1,
+            "recipe:r17": 3,
+            "recipe:r20": 5,
+            "recipe:r23": 6,
+            "recipe:r24": null,
+            "recipe:r25": null,
+            "recipe:r30": 10
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "Suggest a dinner under 500 kcal.",
+          "limit": 5,
+          "meal_type": "dinner",
+          "exclude_ingredients": [
+            "mushroom"
+          ],
+          "max_kcal": 500
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "recipe:r17",
+          "recipe:r23",
+          "recipe:r20",
+          "recipe:r11",
+          "recipe:r24"
+        ],
+        "total_matches": 7,
+        "recall_at_5": 0.7142857142857143,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": [
+          "recipe:r25",
+          "recipe:r30"
+        ],
+        "all_results_acceptable": true
+      }
+    },
+    {
+      "id": "preference_change_05",
+      "category": "preference_change",
+      "kind": "recipe",
+      "question": "Suggest a dinner for me.",
+      "relevant": [
+        "recipe:r11",
+        "recipe:r12",
+        "recipe:r19",
+        "recipe:r23",
+        "recipe:r24",
+        "recipe:r25",
+        "recipe:r30"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "recipe:r18",
+            "recipe:r17",
+            "recipe:r12",
+            "recipe:r15",
+            "recipe:r23"
+          ],
+          "recall_at_5": 0.2857142857142857,
+          "capped_recall_at_5": 0.4,
+          "hit_at_5": true,
+          "reciprocal_rank": 0.3333333333333333,
+          "missed": [
+            "recipe:r11",
+            "recipe:r19",
+            "recipe:r24",
+            "recipe:r25",
+            "recipe:r30"
+          ],
+          "rank_in_top10": {
+            "recipe:r11": 7,
+            "recipe:r12": 3,
+            "recipe:r19": null,
+            "recipe:r23": 5,
+            "recipe:r24": null,
+            "recipe:r25": null,
+            "recipe:r30": null
+          }
+        },
+        "dense": {
+          "top5": [
+            "recipe:r18",
+            "recipe:r17",
+            "recipe:r13",
+            "recipe:r15",
+            "recipe:r12"
+          ],
+          "recall_at_5": 0.14285714285714285,
+          "capped_recall_at_5": 0.2,
+          "hit_at_5": true,
+          "reciprocal_rank": 0.2,
+          "missed": [
+            "recipe:r11",
+            "recipe:r19",
+            "recipe:r23",
+            "recipe:r24",
+            "recipe:r25",
+            "recipe:r30"
+          ],
+          "rank_in_top10": {
+            "recipe:r11": null,
+            "recipe:r12": 5,
+            "recipe:r19": null,
+            "recipe:r23": 7,
+            "recipe:r24": null,
+            "recipe:r25": null,
+            "recipe:r30": null
+          }
+        },
+        "bm25": {
+          "top5": [
+            "recipe:r11",
+            "recipe:r18",
+            "recipe:r17",
+            "recipe:r12",
+            "recipe:r20"
+          ],
+          "recall_at_5": 0.2857142857142857,
+          "capped_recall_at_5": 0.4,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [
+            "recipe:r19",
+            "recipe:r23",
+            "recipe:r24",
+            "recipe:r25",
+            "recipe:r30"
+          ],
+          "rank_in_top10": {
+            "recipe:r11": 1,
+            "recipe:r12": 4,
+            "recipe:r19": 8,
+            "recipe:r23": 6,
+            "recipe:r24": null,
+            "recipe:r25": null,
+            "recipe:r30": 10
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "Suggest a dinner for me.",
+          "limit": 5,
+          "meal_type": "dinner",
+          "diet": "pescatarian",
+          "exclude_ingredients": [
+            "shrimp",
+            "mushroom"
+          ]
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "recipe:r12",
+          "recipe:r23",
+          "recipe:r19",
+          "recipe:r11",
+          "recipe:r30"
+        ],
+        "total_matches": 7,
+        "recall_at_5": 0.7142857142857143,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 1.0,
+        "missed": [
+          "recipe:r24",
+          "recipe:r25"
+        ],
+        "all_results_acceptable": true
+      }
+    },
+    {
+      "id": "ambiguous_unsupported_02",
+      "category": "ambiguous_unsupported",
+      "kind": "food",
+      "question": "How much vitamin D is in raw salmon?",
+      "relevant": [
+        "usda:175167"
+      ],
+      "methods": {
+        "hybrid": {
+          "top5": [
+            "usda:171265",
+            "usda:175167",
+            "usda:173671",
+            "usda:167754",
+            "usda:171952"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 0.5,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:175167": 2
+          }
+        },
+        "dense": {
+          "top5": [
+            "usda:171265",
+            "usda:175167",
+            "usda:173671",
+            "usda:171952",
+            "usda:171964"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 0.5,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:175167": 2
+          }
+        },
+        "bm25": {
+          "top5": [
+            "usda:175167",
+            "usda:171265",
+            "usda:167754",
+            "usda:167758",
+            "usda:167759"
+          ],
+          "recall_at_5": 1.0,
+          "capped_recall_at_5": 1.0,
+          "hit_at_5": true,
+          "reciprocal_rank": 1.0,
+          "missed": [],
+          "rank_in_top10": {
+            "usda:175167": 1
+          }
+        }
+      },
+      "tool": {
+        "tool": "search_foods",
+        "arguments": {
+          "query": "How much vitamin D is in raw salmon?",
+          "limit": 5
+        },
+        "retrieval": {
+          "method": "hybrid",
+          "index_version": "v0001",
+          "index_up_to_date": true,
+          "reason": null,
+          "unmapped_records": [],
+          "recheck_dropped": []
+        },
+        "top": [
+          "usda:171265",
+          "usda:175167",
+          "usda:173671",
+          "usda:167754",
+          "usda:171952"
+        ],
+        "total_matches": null,
+        "recall_at_5": 1.0,
+        "capped_recall_at_5": 1.0,
+        "hit_at_5": true,
+        "reciprocal_rank": 0.5,
+        "missed": []
+      }
+    }
+  ],
+  "no_record_in_dataset": [
+    {
+      "id": "ambiguous_unsupported_04",
+      "question": "How many calories are in a Big Mac?",
+      "top": [
+        {
+          "record_id": "usda:169064",
+          "title": "Pretzels, soft",
+          "similarity": 0.456,
+          "matched_terms": []
+        },
+        {
+          "record_id": "usda:168849",
+          "title": "Snacks, banana chips",
+          "similarity": 0.444,
+          "matched_terms": []
+        },
+        {
+          "record_id": "usda:170286",
+          "title": "Buckwheat",
+          "similarity": 0.425,
+          "matched_terms": []
+        }
+      ]
+    },
+    {
+      "id": "ambiguous_unsupported_06",
+      "question": "I had 2 slices of pizza.",
+      "top": [
+        {
+          "record_id": "usda:167550",
+          "title": "Snacks, popcorn, cakes",
+          "similarity": 0.233,
+          "matched_terms": []
+        },
+        {
+          "record_id": "usda:170054",
+          "title": "Tomato products, canned, sauce",
+          "similarity": 0.23,
+          "matched_terms": []
+        },
+        {
+          "record_id": "usda:170457",
+          "title": "Tomatoes, red, ripe, raw, year round average",
+          "similarity": 0.228,
+          "matched_terms": []
+        }
+      ]
+    }
+  ]
+}

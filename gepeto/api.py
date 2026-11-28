@@ -73,12 +73,14 @@ def create_app(
     db_path: Path | str | None = None,
     secret: str | None = None,
     target_for_profile: Callable[[Confirmations, Path | str], Callable[[int], Any]] | None = None,
+    index_dir: Path | str | None = None,
 ) -> FastAPI:
     """target_for_profile lets tests run the MCP server in-process instead of as a subprocess."""
     db_path = db_path or Settings.from_environment().db_path
+    index_dir = index_dir or Settings.from_environment().index_dir
     secret = secret or os.getenv(SECRET_ENV) or new_secret()
     confirmations = Confirmations(secret)
-    make_target = target_for_profile or (lambda _c, path: stdio_target(path, secret))
+    make_target = target_for_profile or (lambda _c, path: stdio_target(path, secret, index_dir))
 
     @asynccontextmanager
     async def lifespan(app: FastAPI):
@@ -87,7 +89,7 @@ def create_app(
         yield
         await app.state.tools.aclose()
 
-    app = FastAPI(title="GePeTo", version="0.2.0", lifespan=lifespan)
+    app = FastAPI(title="GePeTo", version="0.3.0", lifespan=lifespan)
 
     @app.exception_handler(GepetoError)
     async def gepeto_error(_: Request, exc: GepetoError):

@@ -11,6 +11,7 @@ is owned by a small background task that keeps it open until the host closes.
 from __future__ import annotations
 
 import asyncio
+import os
 import re
 import sys
 from collections.abc import Callable
@@ -21,21 +22,27 @@ import anyio
 from mcp import Client
 from mcp.client.stdio import StdioServerParameters
 
-from .config import PROJECT_ROOT
+from .config import PROJECT_ROOT, Settings
 from .confirm import SECRET_ENV
 from .errors import CODES, GepetoError
 from .mcp_server import PROFILE_ENV
 
-CALL_TIMEOUT_S = 15
+CALL_TIMEOUT_S = 30  # the first search in a new server may still be loading the embedding model
+PASS_THROUGH_ENV = ("HF_HOME", "HF_HUB_OFFLINE", "TRANSFORMERS_OFFLINE", "HF_HUB_CACHE")
 ERROR_PATTERN = re.compile(r"\[(\w+)\] (.*)", re.DOTALL)
 
 
-def stdio_target(db_path: Path | str, secret: str) -> Callable[[int], StdioServerParameters]:
+def stdio_target(db_path: Path | str, secret: str,
+                 index_dir: Path | str | None = None) -> Callable[[int], StdioServerParameters]:
+    index_dir = index_dir or Settings.from_environment().index_dir
+    extra = {key: os.environ[key] for key in PASS_THROUGH_ENV if key in os.environ}
+
     def target(profile_id: int) -> StdioServerParameters:
         return StdioServerParameters(
             command=sys.executable,
             args=["-m", "gepeto.mcp_server"],
-            env={"GEPETO_DB": str(db_path), PROFILE_ENV: str(profile_id), SECRET_ENV: secret},
+            env={**extra, "GEPETO_DB": str(db_path), "GEPETO_INDEX_DIR": str(index_dir),
+                 PROFILE_ENV: str(profile_id), SECRET_ENV: secret},
             cwd=str(PROJECT_ROOT),
         )
     return target
