@@ -12,6 +12,8 @@ is refused.
 from __future__ import annotations
 
 import os
+import sys
+import threading
 from typing import Annotated, Any, Literal
 
 from mcp.server.mcpserver import MCPServer
@@ -117,6 +119,26 @@ class DailySummary(BaseModel):
     unknown_fields: list[NutrientName]
 
 
+class MatchEvidence(BaseModel):
+    method: Literal["hybrid", "dense", "bm25"]
+    score: float = Field(description="Reciprocal rank fusion score: sum of 1/(60+rank) over the two lists.")
+    dense_rank: int | None
+    bm25_rank: int | None
+    similarity: float | None = Field(description="Cosine similarity of the best matching chunk.")
+    bm25_score: float | None
+    matched_terms: list[str]
+    chunk_ids: list[str]
+
+
+class RetrievalInfo(BaseModel):
+    method: Literal["hybrid", "keyword_fallback", "filters_only"]
+    index_version: str | None
+    index_up_to_date: bool | None = Field(description="False: records changed after the index was built.")
+    reason: str | None = Field(description="Why hybrid retrieval was not used, if it wasn't.")
+    unmapped_records: list[str] = []
+    recheck_dropped: list[str] = []
+
+
 class FoodResult(BaseModel):
     food_id: int
     source_id: str
@@ -128,11 +150,12 @@ class FoodResult(BaseModel):
     version: int
     user_entered: bool
     matched_terms: list[str]
+    match: MatchEvidence | None
 
 
 class FoodSearch(BaseModel):
     results: list[FoodResult]
-    retrieval: str
+    retrieval: RetrievalInfo
 
 
 class Ingredient(BaseModel):
@@ -154,10 +177,12 @@ class RecipeResult(BaseModel):
     per_serving: Nutrients
     estimate: bool
     matched_terms: list[str]
+    match: MatchEvidence | None
 
 
 class RecipeSearch(BaseModel):
     results: list[RecipeResult]
+    retrieval: RetrievalInfo
     total_matches: int
     applied_rules: dict[str, Any]
     excluded_by_restrictions: int
@@ -229,7 +254,7 @@ def _run(fn, *args, **kwargs):
 
 
 def build_server(ctx: tools.ToolContext) -> MCPServer:
-    server = MCPServer("gepeto", instructions=INSTRUCTIONS, version="0.2.0")
+    server = MCPServer("gepeto", instructions=INSTRUCTIONS, version="0.3.0")
 
     @server.tool(annotations=READ)
     def get_profile() -> ProfileResult:
@@ -248,7 +273,8 @@ def build_server(ctx: tools.ToolContext) -> MCPServer:
                               Field(description="Only foods in this state.")] = None,
         limit: Annotated[int, Field(ge=1, le=20)] = 5,
     ) -> FoodSearch:
-        """Find food records (values per 100 g). Raw and cooked versions are separate records."""
+        """Find food records (values per 100 g), ranked by hybrid retrieval. Raw and cooked versions are
+        separate records. The best match may still be the wrong food: check the description."""
         return FoodSearch(**_run(tools.search_foods, ctx, query, prep_state, limit))
 
     @server.tool(annotations=READ)
@@ -266,7 +292,8 @@ def build_server(ctx: tools.ToolContext) -> MCPServer:
                                          description="Also require kcal <= what is left on this date.")] = None,
         limit: Annotated[int, Field(ge=1, le=10)] = 5,
     ) -> RecipeSearch:
-        """Recipes that pass every hard rule (diet, excluded ingredients, kcal/protein limits). Per-serving estimates."""
+        """Recipes that pass every hard rule (diet, excluded ingredients, kcal/protein limits), ranked by the
+        query with hybrid retrieval. Per-serving estimates."""
         return RecipeSearch(**_run(
             tools.search_recipes, ctx, query, meal_type, diet, require_tag, exclude_ingredients,
             max_kcal, min_protein_g, fit_remaining_kcal_on, limit,
@@ -311,11 +338,25 @@ def context_from_environment() -> tools.ToolContext:
         db_path=Settings.from_environment().db_path,
         profile_id=int(raw),
         confirmations=Confirmations.from_environment(),
+        index_dir=Settings.from_environment().index_dir,
     )
 
 
+def _warm_up(ctx: tools.ToolContext) -> None:
+    """Load the published index and the embedding model while the server waits for its first call."""
+    try:
+        from .embeddings import default_embedder
+        from .index import live
+        if ctx.index_dir is not None and live(ctx.index_dir).current() is not None:
+            default_embedder().encode(["warm up"])
+    except Exception as exc:  # noqa: BLE001 - the search tools report the problem themselves
+        print(f"gepeto: retrieval warm-up failed: {exc}", file=sys.stderr)
+
+
 def main() -> None:
-    build_server(context_from_environment()).run()  # stdio
+    ctx = context_from_environment()
+    threading.Thread(target=_warm_up, args=(ctx,), daemon=True).start()
+    build_server(ctx).run()  # stdio
 
 
 if __name__ == "__main__":

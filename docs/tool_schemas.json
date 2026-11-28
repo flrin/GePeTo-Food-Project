@@ -366,7 +366,7 @@
     },
     {
       "name": "search_foods",
-      "description": "Find food records (values per 100 g). Raw and cooked versions are separate records.",
+      "description": "Find food records (values per 100 g), ranked by hybrid retrieval. Raw and cooked versions are\n        separate records. The best match may still be the wrong food: check the description.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -474,6 +474,16 @@
                 },
                 "title": "Matched Terms",
                 "type": "array"
+              },
+              "match": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/MatchEvidence"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
               }
             },
             "required": [
@@ -486,9 +496,99 @@
               "unknown_fields",
               "version",
               "user_entered",
-              "matched_terms"
+              "matched_terms",
+              "match"
             ],
             "title": "FoodResult",
+            "type": "object"
+          },
+          "MatchEvidence": {
+            "properties": {
+              "method": {
+                "enum": [
+                  "hybrid",
+                  "dense",
+                  "bm25"
+                ],
+                "title": "Method",
+                "type": "string"
+              },
+              "score": {
+                "description": "Reciprocal rank fusion score: sum of 1/(60+rank) over the two lists.",
+                "title": "Score",
+                "type": "number"
+              },
+              "dense_rank": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Dense Rank"
+              },
+              "bm25_rank": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Bm25 Rank"
+              },
+              "similarity": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Cosine similarity of the best matching chunk.",
+                "title": "Similarity"
+              },
+              "bm25_score": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Bm25 Score"
+              },
+              "matched_terms": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Matched Terms",
+                "type": "array"
+              },
+              "chunk_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Chunk Ids",
+                "type": "array"
+              }
+            },
+            "required": [
+              "method",
+              "score",
+              "dense_rank",
+              "bm25_rank",
+              "similarity",
+              "bm25_score",
+              "matched_terms",
+              "chunk_ids"
+            ],
+            "title": "MatchEvidence",
             "type": "object"
           },
           "Nutrients": {
@@ -546,6 +646,78 @@
             ],
             "title": "Nutrients",
             "type": "object"
+          },
+          "RetrievalInfo": {
+            "properties": {
+              "method": {
+                "enum": [
+                  "hybrid",
+                  "keyword_fallback",
+                  "filters_only"
+                ],
+                "title": "Method",
+                "type": "string"
+              },
+              "index_version": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Index Version"
+              },
+              "index_up_to_date": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "False: records changed after the index was built.",
+                "title": "Index Up To Date"
+              },
+              "reason": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Why hybrid retrieval was not used, if it wasn't.",
+                "title": "Reason"
+              },
+              "unmapped_records": {
+                "default": [],
+                "items": {
+                  "type": "string"
+                },
+                "title": "Unmapped Records",
+                "type": "array"
+              },
+              "recheck_dropped": {
+                "default": [],
+                "items": {
+                  "type": "string"
+                },
+                "title": "Recheck Dropped",
+                "type": "array"
+              }
+            },
+            "required": [
+              "method",
+              "index_version",
+              "index_up_to_date",
+              "reason"
+            ],
+            "title": "RetrievalInfo",
+            "type": "object"
           }
         },
         "properties": {
@@ -557,8 +729,7 @@
             "type": "array"
           },
           "retrieval": {
-            "title": "Retrieval",
-            "type": "string"
+            "$ref": "#/$defs/RetrievalInfo"
           }
         },
         "required": [
@@ -576,7 +747,7 @@
     },
     {
       "name": "search_recipes",
-      "description": "Recipes that pass every hard rule (diet, excluded ingredients, kcal/protein limits). Per-serving estimates.",
+      "description": "Recipes that pass every hard rule (diet, excluded ingredients, kcal/protein limits), ranked by the\n        query with hybrid retrieval. Per-serving estimates.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -742,6 +913,95 @@
             "title": "Ingredient",
             "type": "object"
           },
+          "MatchEvidence": {
+            "properties": {
+              "method": {
+                "enum": [
+                  "hybrid",
+                  "dense",
+                  "bm25"
+                ],
+                "title": "Method",
+                "type": "string"
+              },
+              "score": {
+                "description": "Reciprocal rank fusion score: sum of 1/(60+rank) over the two lists.",
+                "title": "Score",
+                "type": "number"
+              },
+              "dense_rank": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Dense Rank"
+              },
+              "bm25_rank": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Bm25 Rank"
+              },
+              "similarity": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Cosine similarity of the best matching chunk.",
+                "title": "Similarity"
+              },
+              "bm25_score": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Bm25 Score"
+              },
+              "matched_terms": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Matched Terms",
+                "type": "array"
+              },
+              "chunk_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Chunk Ids",
+                "type": "array"
+              }
+            },
+            "required": [
+              "method",
+              "score",
+              "dense_rank",
+              "bm25_rank",
+              "similarity",
+              "bm25_score",
+              "matched_terms",
+              "chunk_ids"
+            ],
+            "title": "MatchEvidence",
+            "type": "object"
+          },
           "Nutrients": {
             "properties": {
               "kcal": {
@@ -866,6 +1126,16 @@
                 },
                 "title": "Matched Terms",
                 "type": "array"
+              },
+              "match": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/MatchEvidence"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
               }
             },
             "required": [
@@ -880,9 +1150,82 @@
               "ingredients",
               "per_serving",
               "estimate",
-              "matched_terms"
+              "matched_terms",
+              "match"
             ],
             "title": "RecipeResult",
+            "type": "object"
+          },
+          "RetrievalInfo": {
+            "properties": {
+              "method": {
+                "enum": [
+                  "hybrid",
+                  "keyword_fallback",
+                  "filters_only"
+                ],
+                "title": "Method",
+                "type": "string"
+              },
+              "index_version": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Index Version"
+              },
+              "index_up_to_date": {
+                "anyOf": [
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "False: records changed after the index was built.",
+                "title": "Index Up To Date"
+              },
+              "reason": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Why hybrid retrieval was not used, if it wasn't.",
+                "title": "Reason"
+              },
+              "unmapped_records": {
+                "default": [],
+                "items": {
+                  "type": "string"
+                },
+                "title": "Unmapped Records",
+                "type": "array"
+              },
+              "recheck_dropped": {
+                "default": [],
+                "items": {
+                  "type": "string"
+                },
+                "title": "Recheck Dropped",
+                "type": "array"
+              }
+            },
+            "required": [
+              "method",
+              "index_version",
+              "index_up_to_date",
+              "reason"
+            ],
+            "title": "RetrievalInfo",
             "type": "object"
           }
         },
@@ -893,6 +1236,9 @@
             },
             "title": "Results",
             "type": "array"
+          },
+          "retrieval": {
+            "$ref": "#/$defs/RetrievalInfo"
           },
           "total_matches": {
             "title": "Total Matches",
@@ -921,6 +1267,7 @@
         },
         "required": [
           "results",
+          "retrieval",
           "total_matches",
           "applied_rules",
           "excluded_by_restrictions",
