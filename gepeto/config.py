@@ -17,6 +17,7 @@ USDA_SOURCE_VERSION = "SR Legacy 2018-04"
 @dataclass(frozen=True)
 class Settings:
     db_path: Path = PROJECT_ROOT / "gepeto.db"
+    index_dir: Path = PROJECT_ROOT / "indexes"
     ollama_url: str = "http://localhost:11434"
     model_name: str = "qwen2.5:3b"
 
@@ -24,6 +25,7 @@ class Settings:
     def from_environment(cls) -> "Settings":
         return cls(
             db_path=Path(os.getenv("GEPETO_DB", str(cls.db_path))),
+            index_dir=Path(os.getenv("GEPETO_INDEX_DIR", str(cls.index_dir))),
             ollama_url=os.getenv("GEPETO_OLLAMA_URL", cls.ollama_url).rstrip("/"),
             model_name=os.getenv("GEPETO_MODEL", cls.model_name),
         )

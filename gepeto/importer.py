@@ -10,7 +10,8 @@ Steps (Milestone 2, section 2):
  1. validate required fields, units and non-negative values, report rejected rows
  2. normalize nutrients to 100 g (servings only when the gram weight is known)
  3. insert or update by (source, source_id), skipping unchanged rows by content hash
- (4. search indexes are rebuilt in week 9)
+ 4. rebuild the search cards, their embeddings and the BM25 index, and publish
+    the new index version only once both are ready (gepeto/index.py; --no-index skips it)
 """
 
 from __future__ import annotations
@@ -320,6 +321,8 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("path", type=Path)
     parser.add_argument("--manifest", type=Path, help="only import fdc_ids listed in this CSV")
     parser.add_argument("--db", type=Path, default=Settings.from_environment().db_path)
+    parser.add_argument("--index-dir", type=Path, default=Settings.from_environment().index_dir)
+    parser.add_argument("--no-index", action="store_true", help="only update SQLite; build the index later")
     args = parser.parse_args(argv)
 
     conn = connect(args.db)
@@ -334,6 +337,14 @@ def main(argv: list[str] | None = None) -> None:
     print(f"{args.kind}: {report.summary()}  ->  {args.db}")
     for source_id, errors in report.rejected:
         print(f"  rejected {source_id}: {'; '.join(errors)}")
+    if not args.no_index:
+        from .index import build, describe
+        try:
+            print(describe(build(conn, args.index_dir), args.index_dir))
+        except Exception as exc:  # noqa: BLE001 - SQLite is updated; the old index stays published
+            raise SystemExit(f"index not rebuilt ({exc}); the previous version is still published. "
+                             f"Retry with: python -m gepeto.index build")
+    conn.close()
 
 
 if __name__ == "__main__":
